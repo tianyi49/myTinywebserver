@@ -37,7 +37,8 @@ public:
 class heap_timer {
 private:
   vector<shared_ptr<util_timer>> m_heapVec; // 堆数组
-  int m_size = 0; // 多线程情况会不会造成Bug?是会的，但这里只在主线程使用
+  int m_size = 0; // 多线程情况会不会造成Bug?是会的，
+                  // 但这里只在主线程使用,必须是int否则隐式的类型转换导致越界
 public:
   heap_timer() = default;
   ~heap_timer() = default;
@@ -61,7 +62,7 @@ public:
     return m_heapVec[0];
   }
   void pop_timer();
-  void adjust_timer(shared_ptr<util_timer> timer);
+  void adjust_timer(shared_ptr<util_timer> timer); // 只会往后延长时间
   void tick();
 
 private:

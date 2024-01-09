@@ -7,10 +7,10 @@ else
     CXXFLAGS += -O2
 
 endif
-OBJS =  main.cpp  ./timer/heap_timer.cpp ./http/http_conn.cpp \
+OBJS = ./timer/heap_timer.cpp ./http/http_conn.cpp \
 ./log/log.cpp ./CGImysql/sql_connection_pool.cpp  ./webserver/webserver.cpp config.cpp
 
-server:
+server: main.cpp
 	$(CXX) $(OBJS) -o server  $^ $(CXXFLAGS) -lpthread -lmysqlclient
 
 clean:

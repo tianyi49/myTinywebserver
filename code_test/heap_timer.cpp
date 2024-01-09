@@ -4,7 +4,7 @@
 void heap_timer::percolate_down(int hole) {
   shared_ptr<util_timer> tem = m_heapVec[hole];
   int child = 0;
-  for (; (hole * 2 + 1) <= (m_size - 1); hole = child) {
+  for (; hole * 2 + 1 < m_size; hole = child) {
     child = 2 * hole + 1;
     if (child < m_size - 1 &&
         m_heapVec[child]->expire > m_heapVec[child + 1]->expire)
@@ -47,13 +47,13 @@ void heap_timer::adjust_timer(shared_ptr<util_timer> timer) {
   if (!timer)
     return;
   for (int i = 0; i <= m_size; i++)
-    if (m_heapVec[i].get() == timer.get())
+    if (m_heapVec[i] == timer)
       percolate_down(i);
 }
 void heap_timer::tick() {
+  auto tmp = m_heapVec[0];
   time_t cur = time(NULL);
-  while (m_size > 0) {
-    auto tmp = m_heapVec[0];
+  while (m_size) {
     if (!tmp)
       break;
     if (tmp->expire > cur)
@@ -61,6 +61,7 @@ void heap_timer::tick() {
     if (tmp->cb_func)
       cb_func(tmp->user_data);
     pop_timer();
+    tmp = m_heapVec[0];
   }
 }
 

@@ -10,7 +10,6 @@ int main(int argc, char *argv[]) {
   Config config;
   config.parse_arg(argc, argv);
   WebServer server;
-
   // 初始化
   server.init(config.PORT, user, passwd, databasename, config.LOGWrite,
               config.OPT_LINGER, config.TRIGMode, config.sql_num,

@@ -46,6 +46,7 @@ void http_conn::initmysql_result(connection_pool *connPool) {
   while (MYSQL_ROW row = mysql_fetch_row(result)) {
     users[row[0]] = row[1];
   }
+  mysql_free_result(result);
 }
 
 // 从内核时间表删除描述符

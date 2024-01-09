@@ -1,6 +1,8 @@
 #include "webserver.h"
 #include <arpa/inet.h>
 #include <cerrno>
+#include <cstddef>
+#include <ctime>
 #include <memory>
 #include <unistd.h>
 int setnonblocking(int fd) {
@@ -61,9 +63,6 @@ void WebServer::timer(int connfd, struct sockaddr_in client_address) {
   timer->expire = cur + 3 * TIMESLOT;
   users_timer[connfd].timer = timer;
   utils.m_heap_timer.add_timer(timer);
-  // if (utils.m_heap_timer.get_size() || utils.m_heap_timer.get_msize())
-  //   printf("heap_timer:%d ,m_size:%d \n", utils.m_heap_timer.get_size(),
-  //          utils.m_heap_timer.get_msize());
 }
 // 若有数据传输，则将定时器往后延迟3个单位
 // 并对新的定时器在链表上的位置进行调整
@@ -310,7 +309,6 @@ void WebServer::eventListen() {
 void WebServer::eventLoop() {
   bool timeout = true;
   bool stop_server = false;
-
   while (!stop_server) {
     int number = epoll_wait(m_epollfd, events, MAX_EVENT_NUMBER, -1);
     if (number < 0 && errno != EINTR) { // 之前写为Eagin导致每次断点都·退出程序
@@ -340,6 +338,9 @@ void WebServer::eventLoop() {
     }
     if (timeout) // 处理定时事件
     {
+      // if (utils.m_heap_timer.get_size() || utils.m_heap_timer.get_msize())
+      //   printf("heap_timer:%d ,m_size:%d \n", utils.m_heap_timer.get_size(),
+      //          utils.m_heap_timer.get_msize());
       utils.timer_handler(); // 定时器检测连接过期情况，重新发送定时信号
       LOG_INFO("%s", "timer tick");
 

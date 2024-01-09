@@ -37,4 +37,16 @@ Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
 >Speed=651012 pages/min, 1215222 bytes/sec.
 Requests: 54251 susceed, 0 failed.
 
-# 测试记录2
+# 测试记录2 小根堆
+**LT+ET**
+yy@yy-server:~/code_project/myTinyWebServer/test_pressure/webbench-1.5$ ./webbench -c 8500 -t 5 http://192.168.100.128:9006/
+Webbench - Simple Web Benchmark 1.5
+Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
+
+Benchmarking: GET http://192.168.100.128:9006/
+8500 clients, running 5 sec.
+
+Speed=1267272 pages/min, 2365574 bytes/sec.
+Requests: 105606 susceed, 0 failed.
+
+2万QPS+
