@@ -1,13 +1,10 @@
-#ifndef LST_TIMER_H
-#define LST_TIMER_H
+#ifndef HEAP_TIMER
+#define HEAP_TIMER
 #include <arpa/inet.h>
 #include <assert.h>
-#include <errno.h>
 #include <fcntl.h>
 #include <netinet/in.h>
 #include <pthread.h>
-#include <signal.h>
-#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,43 +17,55 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include "../log/log.h"
+#include <memory>
 #include <time.h>
+#include <vector>
+using namespace std;
 class util_timer;
 struct client_data {
   sockaddr_in address;
   int sockfd;
-  util_timer *timer;
+  shared_ptr<util_timer> timer;
 };
 
 class util_timer {
 public:
-  util_timer() : prev(NULL), next(NULL) {}
-
-public:
   time_t expire;
   void (*cb_func)(client_data *);
   client_data *user_data;
-  util_timer *prev;
-  util_timer *next;
 };
-
-class sort_timer_lst // 升序排列定时器过期时间
-{
+class heap_timer {
+private:
+  vector<shared_ptr<util_timer>> m_heapVec; // 堆数组
+  size_t m_size = 0; // 多线程情况会不会造成Bug?是会的，但这里只在主线程使用
 public:
-  sort_timer_lst();
-  ~sort_timer_lst();
+  heap_timer() = default;
+  ~heap_timer() = default;
 
-  void add_timer(util_timer *timer);
-  void adjust_timer(util_timer *timer); // 增加了过期事件需要重新调整
-  void del_timer(util_timer *timer);
+public:
+  size_t get_size() { return m_heapVec.size(); }
+  size_t get_msize() { return m_size; }
+
+  void add_timer(shared_ptr<util_timer> timer);
+  // 节省删除开销
+  void del_timer(shared_ptr<util_timer> timer) {
+    if (!timer) {
+      return;
+    }
+    // lazy delelte
+    timer->cb_func = NULL;
+  }
+  shared_ptr<util_timer> top() const {
+    if (m_heapVec.empty())
+      return nullptr;
+    return m_heapVec[0];
+  }
+  void pop_timer();
+  void adjust_timer(shared_ptr<util_timer> timer);
   void tick();
 
 private:
-  void add_timer(util_timer *timer, util_timer *lst_head); // 从某个位置往后添加
-
-  util_timer *head;
-  util_timer *tail;
+  void percolate_down(int hole);
 };
 
 class Utils {
@@ -78,10 +87,9 @@ public:
 
 public:
   static int *u_pipefd;
-  sort_timer_lst m_timer_lst;
+  heap_timer m_heap_timer;
   static int u_epollfd;
   int m_TIMESLOT;
 };
 void cb_func(client_data *user_data);
-
 #endif

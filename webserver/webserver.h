@@ -3,7 +3,6 @@
 #include "../http/http_conn.h"
 #include "../threadpool/threadpool.h"
 #include <arpa/inet.h>
-#include <cassert>
 #include <errno.h>
 #include <fcntl.h>
 #include <netinet/in.h>
@@ -19,7 +18,7 @@
 using namespace std;
 const int MAX_FD = 65536;
 const int MAX_EVENT_NUMBER = 10000;
-const int TIMESLOT = 10; // 最小超时单位
+const int TIMESLOT = 1; // 最小超时单位
 
 int setnonblocking(int fd); // 对文件描述符设置非阻塞
 void addfd(
@@ -37,8 +36,8 @@ public:
   void log_write();
 
   void timer(int connfd, struct sockaddr_in client_address);
-  void adjust_timer(util_timer *timer);
-  void deal_timer(util_timer *timer, int sockfd);
+  void adjust_timer(shared_ptr<util_timer> timer);
+  void deal_timer(shared_ptr<util_timer> timer, int sockfd);
   bool dealclinetdata();
   bool dealwithsignal(bool &timeout, bool &stop_server);
   void dealwithread(int sockfd);

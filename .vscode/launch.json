@@ -10,8 +10,12 @@
             "request": "launch",
             "program": "${workspaceFolder}/server",
             "args": [
+                "-m ",
+                "1",
                 "-t",
-                "8"
+                "11",
+                "-c",
+                "1"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

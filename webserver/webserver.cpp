@@ -1,7 +1,7 @@
 #include "webserver.h"
 #include <arpa/inet.h>
 #include <cerrno>
-#include <stdexcept>
+#include <memory>
 #include <unistd.h>
 int setnonblocking(int fd) {
   int old_option = fcntl(fd, F_GETFL);
@@ -54,29 +54,32 @@ void WebServer::timer(int connfd, struct sockaddr_in client_address) {
   // 创建定时器，设置回调函数和超时时间，绑定用户数据，将定时器添加到链表中
   users_timer[connfd].address = client_address;
   users_timer[connfd].sockfd = connfd;
-  util_timer *timer = new util_timer;
+  auto timer = make_shared<util_timer>();
   timer->user_data = &users_timer[connfd];
   timer->cb_func = cb_func;
   time_t cur = time(NULL);
   timer->expire = cur + 3 * TIMESLOT;
   users_timer[connfd].timer = timer;
-  utils.m_timer_lst.add_timer(timer);
+  utils.m_heap_timer.add_timer(timer);
+  // if (utils.m_heap_timer.get_size() || utils.m_heap_timer.get_msize())
+  //   printf("heap_timer:%d ,m_size:%d \n", utils.m_heap_timer.get_size(),
+  //          utils.m_heap_timer.get_msize());
 }
 // 若有数据传输，则将定时器往后延迟3个单位
 // 并对新的定时器在链表上的位置进行调整
-void WebServer::adjust_timer(util_timer *timer) {
+void WebServer::adjust_timer(shared_ptr<util_timer> timer) {
   time_t cur = time(NULL);
   timer->expire = cur + 3 * TIMESLOT;
-  utils.m_timer_lst.adjust_timer(timer);
+  utils.m_heap_timer.adjust_timer(timer);
   LOG_INFO("%s", "adjust timer once");
 }
 
 void WebServer::deal_timer(
-    util_timer *timer,
+    shared_ptr<util_timer> timer,
     int sockfd) { // 释放了http连接的所有资源，定时器，epoll注册的fd,connfd
   timer->cb_func(&users_timer[sockfd]);
   if (timer)
-    utils.m_timer_lst.del_timer(timer);
+    utils.m_heap_timer.del_timer(timer);
   LOG_INFO("close fd %d", users_timer[sockfd].sockfd);
 }
 
@@ -135,7 +138,7 @@ bool WebServer::dealwithsignal(bool &timeout, bool &stop_server) {
   return true;
 }
 void WebServer::dealwithread(int sockfd) {
-  util_timer *timer = users_timer[sockfd].timer;
+  shared_ptr<util_timer> timer = users_timer[sockfd].timer;
   // reactor
   if (1 == m_actormodel) {
     if (timer) {
@@ -168,7 +171,7 @@ void WebServer::dealwithread(int sockfd) {
   }
 }
 void WebServer::dealwithwrite(int sockfd) {
-  util_timer *timer = users_timer[sockfd].timer;
+  shared_ptr<util_timer> timer = users_timer[sockfd].timer;
   if (1 == m_actormodel) {
     if (timer) {
       adjust_timer(timer);
@@ -305,7 +308,7 @@ void WebServer::eventListen() {
 };
 
 void WebServer::eventLoop() {
-  bool timeout = false;
+  bool timeout = true;
   bool stop_server = false;
 
   while (!stop_server) {
@@ -323,7 +326,7 @@ void WebServer::eventLoop() {
           continue;
       } else if (events[i].events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)) {
         // 服务器端关闭连接，移除对应的定时器
-        util_timer *timer = users_timer[sockfd].timer;
+        shared_ptr<util_timer> timer = users_timer[sockfd].timer;
         deal_timer(timer, sockfd);
       } else if (sockfd == m_pipefd[0] && (events[i].events & EPOLLIN)) {
         bool flag = dealwithsignal(timeout, stop_server); // 处理信号

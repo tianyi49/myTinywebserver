@@ -1,8 +1,7 @@
-# 测试记录1
+# 测试记录1 使用链表的定时器
 **LT+ET**
 
->yy@yy-server:~/code_project/myTinyWebServer/test_pressure/webbench-1.5$ ./webbench -c 8000 -t 5 http://192.168.1
-00.128:9006/
+>yy@yy-server:~/code_project/myTinyWebServer/test_pressure/webbench-1.5$ ./webbench -c 8000 -t 5 http://192.168.100.128:9006/
 >Webbench - Simple Web Benchmark 1.5
 Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
 >

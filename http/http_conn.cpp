@@ -67,7 +67,7 @@ void modfd(int epollfd, int fd, int ev, int TRIGMode) {
 // 关闭连接，关闭一个连接，客户总量减一
 void http_conn::close_conn(bool real_close) {
   if (real_close && (m_sockfd != -1)) {
-    printf("close %d\n", m_sockfd);
+    // printf("close %d\n", m_sockfd);
     removefd(m_epollfd, m_sockfd);
     m_sockfd = -1;
     m_user_count--;
