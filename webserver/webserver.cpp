@@ -336,11 +336,11 @@ void WebServer::eventLoop() {
         dealwithwrite(sockfd);
       }
     }
+    // if (utils.m_heap_timer.get_size() || utils.m_heap_timer.get_msize())
+    //   printf("heap_timer:%d ,m_size:%d \n", utils.m_heap_timer.get_size(),
+    //          utils.m_heap_timer.get_msize());
     if (timeout) // 处理定时事件
     {
-      // if (utils.m_heap_timer.get_size() || utils.m_heap_timer.get_msize())
-      //   printf("heap_timer:%d ,m_size:%d \n", utils.m_heap_timer.get_size(),
-      //          utils.m_heap_timer.get_msize());
       utils.timer_handler(); // 定时器检测连接过期情况，重新发送定时信号
       LOG_INFO("%s", "timer tick");
 

@@ -39,13 +39,13 @@ private:
   vector<shared_ptr<util_timer>> m_heapVec; // 堆数组
   int m_size = 0; // 多线程情况会不会造成Bug?是会的，但这里只在主线程使用
 public:
-  heap_timer() = default;
+  heap_timer() : m_heapVec(5000){}; // 提前分配vec大小，避免动态扩容开销
   ~heap_timer() = default;
 
 public:
   size_t get_size() { return m_heapVec.size(); }
   size_t get_msize() { return m_size; }
-
+  // 如果每次都是加一个固定的延时时间，那么最新加的必定是最大的可以直接放在末尾，查找增加了每次可扩展的延时的灵活性但牺牲了性能
   void add_timer(shared_ptr<util_timer> timer);
   // 节省删除开销
   void del_timer(shared_ptr<util_timer> timer) {
@@ -61,6 +61,7 @@ public:
     return m_heapVec[0];
   }
   void pop_timer();
+  // 只会增加时间所以找到了定时器位置后只用下沉调整
   void adjust_timer(shared_ptr<util_timer> timer);
   void tick();
 

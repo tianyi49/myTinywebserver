@@ -19,9 +19,12 @@ void heap_timer::percolate_down(int hole) {
 void heap_timer::add_timer(shared_ptr<util_timer> timer) {
   if (!timer.get())
     return;
-  int hole = m_heapVec.size();
+  int hole = m_size;
   int parent = 0;
-  m_heapVec.push_back(timer); // 放到末尾
+  if (m_size < m_heapVec.size())
+    m_heapVec[m_size] = timer;
+  else
+    m_heapVec.push_back(timer); // 放到末尾
   m_size++;
   auto tem = timer;
   for (; hole > 0; hole = parent) {
@@ -39,7 +42,10 @@ void heap_timer::pop_timer() {
     return;
   if (m_heapVec[0]) {
     m_heapVec[0] = m_heapVec[--m_size];
-    m_heapVec.pop_back();
+    if (m_heapVec.size() > 5000)
+      m_heapVec.pop_back();
+    else
+      m_heapVec[m_size] = nullptr;
     percolate_down(0);
   }
 }
