@@ -65,6 +65,6 @@ Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
 Benchmarking: GET http://192.168.100.128:9006/
 8500 clients, running 5 sec.
 
-Speed=1317204 pages/min, 2458758 bytes/sec.
-Requests: 109767 susceed, 0 failed.
+Speed=1320192 pages/min, 2464291 bytes/sec.
+Requests: 110016 susceed, 0 failed.
 提升不明显

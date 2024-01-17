@@ -21,7 +21,7 @@ void heap_timer::add_timer(shared_ptr<util_timer> timer) {
     return;
   int hole = m_size;
   int parent = 0;
-  if (m_size < m_heapVec.size())
+  if (m_size < initHeapSize)
     m_heapVec[m_size] = timer;
   else
     m_heapVec.push_back(timer); // 放到末尾
@@ -42,7 +42,7 @@ void heap_timer::pop_timer() {
     return;
   if (m_heapVec[0]) {
     m_heapVec[0] = m_heapVec[--m_size];
-    if (m_heapVec.size() > 5000)
+    if (m_heapVec.size() > initHeapSize)
       m_heapVec.pop_back();
     else
       m_heapVec[m_size] = nullptr;
