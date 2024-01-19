@@ -282,7 +282,7 @@ void WebServer::eventListen() {
   setsockopt(m_listenfd, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
   ret = bind(m_listenfd, (struct sockaddr *)&address, sizeof(address));
   assert(ret != -1);
-  ret = listen(m_listenfd, 5);
+  ret = listen(m_listenfd, 128);
   assert(ret != -1);
   utils.init(TIMESLOT);
 
@@ -301,13 +301,14 @@ void WebServer::eventListen() {
   utils.addsig(SIGALRM, utils.sig_handler, false);
   utils.addsig(SIGTERM, utils.sig_handler, false);
 
+  alarm(TIMESLOT);
   // 工具类,信号和描述符基础操作
   Utils::u_pipefd = m_pipefd;
   Utils::u_epollfd = m_epollfd;
 };
 
 void WebServer::eventLoop() {
-  bool timeout = true;
+  bool timeout = false;
   bool stop_server = false;
   while (!stop_server) {
     int number = epoll_wait(m_epollfd, events, MAX_EVENT_NUMBER, -1);
