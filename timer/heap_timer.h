@@ -59,18 +59,21 @@ public:
     // lazy delelte
     timer->cb_func = NULL;
   }
+  void del_timer1(shared_ptr<util_timer> timer); // 直接删除
   shared_ptr<util_timer> top() const {
     if (m_heapVec.empty())
       return nullptr;
     return m_heapVec[0];
   }
   void pop_timer();
+  void pop_timer(int index);
   // 只会增加时间所以找到了定时器位置后只用下沉调整
   void adjust_timer(shared_ptr<util_timer> timer);
   void tick();
 
 private:
-  void percolate_down(int hole);
+  void
+  percolate_down(int hole); // 下沉最后会把原hole处的timer添加timer2index索引
 };
 
 class Utils {

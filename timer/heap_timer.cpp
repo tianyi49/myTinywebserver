@@ -56,6 +56,25 @@ void heap_timer::pop_timer() {
     percolate_down(0);
   }
 }
+void heap_timer::pop_timer(int index) {
+  if (m_heapVec.empty())
+    return;
+  if (m_heapVec[index]) {
+    timer2index.erase(m_heapVec[index]);
+    m_heapVec[index] = m_heapVec[--m_size];
+    if (m_heapVec.size() > initHeapSize)
+      m_heapVec.pop_back();
+    else
+      m_heapVec[m_size] = nullptr;
+    percolate_down(index);
+  }
+}
+void heap_timer::del_timer1(shared_ptr<util_timer> timer) {
+  if (!timer) {
+    return;
+  }
+  pop_timer(timer2index[timer]);
+}
 void heap_timer::adjust_timer(shared_ptr<util_timer> timer) {
   if (!timer)
     return;
