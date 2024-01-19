@@ -9,12 +9,14 @@ void heap_timer::percolate_down(int hole) {
     if (child < m_size - 1 &&
         m_heapVec[child]->expire > m_heapVec[child + 1]->expire)
       ++child;
-    if (tem->expire > m_heapVec[child]->expire)
+    if (tem->expire > m_heapVec[child]->expire) {
       m_heapVec[hole] = m_heapVec[child];
-    else
+      timer2index[m_heapVec[hole]] = hole;
+    } else
       break;
   }
   m_heapVec[hole] = tem;
+  timer2index[tem] = hole;
 }
 void heap_timer::add_timer(shared_ptr<util_timer> timer) {
   if (!timer.get())
@@ -29,18 +31,23 @@ void heap_timer::add_timer(shared_ptr<util_timer> timer) {
   auto tem = timer;
   for (; hole > 0; hole = parent) {
     parent = (hole - 1) / 2;
-    if (m_heapVec[parent]->expire > tem->expire)
+    if (m_heapVec[parent]->expire > tem->expire) {
       m_heapVec[hole] = m_heapVec[parent];
+      timer2index[m_heapVec[hole]] = hole;
+    }
+
     else
       break;
   }
   m_heapVec[hole] = tem;
+  timer2index[tem] = hole;
 }
 
 void heap_timer::pop_timer() {
   if (m_heapVec.empty())
     return;
   if (m_heapVec[0]) {
+    timer2index.erase(m_heapVec[0]);
     m_heapVec[0] = m_heapVec[--m_size];
     if (m_heapVec.size() > initHeapSize)
       m_heapVec.pop_back();
@@ -52,9 +59,7 @@ void heap_timer::pop_timer() {
 void heap_timer::adjust_timer(shared_ptr<util_timer> timer) {
   if (!timer)
     return;
-  for (int i = 0; i <= m_size; i++)
-    if (m_heapVec[i].get() == timer.get())
-      percolate_down(i);
+  percolate_down(timer2index[timer]);
 }
 void heap_timer::tick() {
   time_t cur = time(NULL);

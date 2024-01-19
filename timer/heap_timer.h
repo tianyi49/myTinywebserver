@@ -40,6 +40,7 @@ private:
   int m_size = 0; // 多线程情况会不会造成Bug?是会的，但这里只在主线程使用
   const int initHeapSize = 5000;
   vector<shared_ptr<util_timer>> m_heapVec; // 堆数组
+  unordered_map<shared_ptr<util_timer>, int> timer2index;
 
 public:
   heap_timer() : m_heapVec(initHeapSize) {} // 提前分配vec大小，避免动态扩容开销
