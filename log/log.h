@@ -30,6 +30,8 @@ public:
 
   void flush(void);
 
+  int getNumberOfLines(char *filepath); // 统计文件行数，用于初始化m_count;
+
 private:
   Log();
   virtual ~Log();

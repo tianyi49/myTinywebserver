@@ -19,6 +19,21 @@ Log::~Log() {
   if (m_fp != nullptr)
     fclose(m_fp);
 }
+int Log::getNumberOfLines(char *filepath) {
+  char flag;
+  FILE *fp = fopen(filepath, "r");
+  int count = 0;
+  while (!feof(fp)) {
+
+    flag = fgetc(fp);
+    if (flag == '\n')
+      count++;
+  }
+
+  // 因为最后一行没有换行符\n，所以需要在count补加1
+  fclose(fp);
+  return count;
+}
 // 异步需要设置阻塞队列的长度，同步不需要设置
 bool Log::init(const char *file_name, int close_log, int log_buf_size,
                int split_lines, int max_queue_size) {
@@ -26,7 +41,7 @@ bool Log::init(const char *file_name, int close_log, int log_buf_size,
     m_is_async = true;
     m_log_queue = new block_queue<string>(max_queue_size);
     pthread_t tid;
-    pthread_create(&tid, NULL, &flush_log_thread, NULL);
+    pthread_create(&tid, NULL, &flush_log_thread, NULL); // 创建异步写入线程
   }
   m_close_log = close_log;
   m_log_buf_size = log_buf_size;
@@ -53,6 +68,7 @@ bool Log::init(const char *file_name, int close_log, int log_buf_size,
   if (m_fp == NULL) {
     return false;
   }
+  m_count = getNumberOfLines(log_full_name);
   return true;
 }
 void Log::write_log(int level, const char *format, ...) {

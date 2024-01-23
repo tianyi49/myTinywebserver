@@ -45,7 +45,6 @@ public:
   }
   // 判断队列是否为空
   bool empty() {
-
     m_mutex.lock();
     bool tem = (m_size <= 0);
     m_mutex.unlock();

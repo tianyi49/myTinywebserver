@@ -18,7 +18,7 @@
 using namespace std;
 const int MAX_FD = 65536;
 const int MAX_EVENT_NUMBER = 10000;
-const int TIMESLOT = 1; // 最小超时单位
+const int TIMESLOT = 5; // 最小超时单位
 
 int setnonblocking(int fd); // 对文件描述符设置非阻塞
 void addfd(
