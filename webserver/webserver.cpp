@@ -244,9 +244,8 @@ void WebServer::log_write() {
       Log::get_instance()->init("./log_record/ServerLog", m_close_log, 2000,
                                 800000, 800);
     else
-      ;
-    Log::get_instance()->init("./log_record/ServerLog", m_close_log, 2000,
-                              800000, 0);
+      Log::get_instance()->init("./log_record/ServerLog", m_close_log, 2000,
+                                800000, 0);
   }
 }
 void WebServer::sql_pool() {

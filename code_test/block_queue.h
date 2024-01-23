@@ -96,7 +96,7 @@ public:
   // 若当前没有线程等待条件变量,则唤醒无意义
   bool push(const T &item) {
     m_mutex.lock();
-    if (m_size >= m_max_size) {
+    if (size() >= m_max_size) {
       m_cond.broadcast();
       m_mutex.unlock();
       return false;

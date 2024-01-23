@@ -1,5 +1,4 @@
 #include "heap_timer.h"
-#include "../http/http_conn.h"
 #include <memory>
 void heap_timer::percolate_down(int hole) {
   shared_ptr<util_timer> tem = m_heapVec[hole];
@@ -103,7 +102,6 @@ void cb_func(client_data *user_data) {
             0); // 删除监控的连接文件描述符
   assert(user_data);
   close(user_data->sockfd);
-  http_conn::m_user_count--; // 结束这个连接总数量--
 }
 
 int main() { return 0; }
