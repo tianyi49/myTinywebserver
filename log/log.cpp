@@ -1,25 +1,91 @@
-#include "log.h"
-#include <bits/types/struct_timeval.h>
-#include <cstdarg>
-#include <cstddef>
-#include <cstdio>
-#include <ctime>
-#include <pthread.h>
-#include <stdarg.h>
-#include <string.h>
-#include <sys/time.h>
-#include <time.h>
-using namespace std;
+// Copyright 2020, Chen Shuaihao.
+//
+// Author: Chen Shuaihao
+//
+// -----------------------------------------------------------------------------
+// File: logger.cpp
+// -----------------------------------------------------------------------------
+//
 
-Log::Log() {
-  m_count = 0;
-  m_is_async = false;
+#include "log.h"
+#include <cstdlib>
+const char *LevelString[5] = {"DEBUG", "INFO", "WARNING", "ERROR", "FATAL"};
+// LogBuffer
+
+LogBuffer::LogBuffer(int size)
+    : bufsize(size), usedlen(0), state(BufState::FREE) {
+  logbuffer = new char[bufsize];
+  if (logbuffer == nullptr) {
+    std::cerr << "mem alloc fail: new char!" << std::endl;
+  }
 }
-Log::~Log() {
-  if (m_fp != nullptr)
-    fclose(m_fp);
+
+LogBuffer::~LogBuffer() {
+  if (logbuffer != nullptr) {
+    delete[] logbuffer;
+  }
 }
-int Log::getNumberOfLines(char *filepath) {
+
+void LogBuffer::append(const char *logline, int len) {
+  memcpy(logbuffer + usedlen, logline, len);
+  usedlen += len;
+}
+
+void LogBuffer::FlushToFile(FILE *fp) {
+  uint32_t wt_len = fwrite(logbuffer, 1, usedlen, fp);
+  if (wt_len != usedlen) {
+    std::cerr << "fwrite fail!" << std::endl;
+  }
+  usedlen = 0;
+  fflush(fp);
+}
+
+// Logger
+
+Logger::Logger(/* args */)
+    : level(LoggerLevel::INFO), fp(nullptr),
+      // currentlogbuffer(nullptr),
+      buftotalnum(0), start(false) {}
+
+Logger::~Logger() {
+  std::cout << "~Logger" << std::endl;
+  // 最后的日志缓冲区push入队列
+  {
+    std::lock_guard<std::mutex> lock(mtx);
+    // std::unordered_map<std::thread::id, LogBuffer *>::iterator iter;
+    std::map<std::thread::id, LogBuffer *>::iterator iter;
+    for (iter = threadbufmap.begin(); iter != threadbufmap.end(); ++iter) {
+      iter->second->SetState(LogBuffer::BufState::FLUSH);
+      {
+        std::lock_guard<std::mutex> lock2(flushmtx);
+        flushbufqueue.push(iter->second);
+      }
+    }
+  }
+  flushcond.notify_one();
+  // shutdown flush thread,makesure start=false fi
+  start = false;
+  flushcond.notify_one();
+  if (flushthread.joinable())
+    flushthread.join();
+
+  if (fp != nullptr) {
+    fclose(fp);
+  }
+  // std::cout << freebufqueue.size() << std::endl;
+  while (!freebufqueue.empty()) {
+    LogBuffer *p = freebufqueue.front();
+    freebufqueue.pop();
+    delete p;
+  }
+  while (!flushbufqueue.empty()) {
+    LogBuffer *p = flushbufqueue.front();
+    flushbufqueue.pop();
+    delete p;
+  }
+}
+
+int Logger::getNumberOfLines(char *filepath) {
   char flag;
   FILE *fp = fopen(filepath, "r");
   int count = 0;
@@ -34,117 +100,199 @@ int Log::getNumberOfLines(char *filepath) {
   fclose(fp);
   return count;
 }
-// 异步需要设置阻塞队列的长度，同步不需要设置
-bool Log::init(const char *file_name, int close_log, int log_buf_size,
-               int split_lines, int max_queue_size) {
-  if (max_queue_size >= 1) {
-    m_is_async = true;
-    m_log_queue = new block_queue<string>(max_queue_size);
-    pthread_t tid;
-    pthread_create(&tid, NULL, &flush_log_thread, NULL); // 创建异步写入线程
+
+void Logger::Init(const char *logdir, LoggerLevel lev, int close_log,
+                  int split_lines) {
+  // alloc logbuf
+  // currentlogbuffer = new LogBuffer(BUFSIZE);
+  // buftotalnum++;
+
+  // get time
+  time_t t = time(nullptr);
+  struct tm *ptm = localtime(&t);
+
+  // create logfilename
+  char logfilepath[256] = {0};
+  strncpy(m_logdir, logdir, strlen(logdir) + 1);
+  snprintf(logfilepath, 255, "%s/log_%d_%d_%d", logdir, ptm->tm_year + 1900,
+           ptm->tm_mon + 1, ptm->tm_mday);
+  level = lev;
+  m_today = ptm->tm_mday;
+  fp = fopen(logfilepath, "a");
+  if (fp == nullptr) {
+    printf("logfile open fail!\n");
   }
+
+  // create flush thread
+  flushthread = std::thread(&Logger::Flush, this);
+
+  // init var
   m_close_log = close_log;
-  m_log_buf_size = log_buf_size;
   m_split_lines = split_lines;
-  m_buf = new char[m_log_buf_size];
-  memset(m_buf, '\0', m_log_buf_size);
-
-  time_t t = time(NULL);
-  struct tm *sys_tm = localtime(&t);
-  struct tm my_tm = *sys_tm;
-  const char *p = strrchr(file_name, '/');
-  char log_full_name[256] = {0};
-  if (p == NULL) {
-    snprintf(log_full_name, 255, "%d_%02d_%02d_%s", &my_tm.tm_year + 1900,
-             &my_tm.tm_mon + 1, my_tm.tm_mday, file_name);
-  } else {
-    strcpy(log_name, p + 1);
-    strncpy(dir_name, file_name, p - file_name + 1);
-    snprintf(log_full_name, 255, "%s%d_%02d_%02d_%s", dir_name,
-             my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, log_name);
-  }
-  m_today = my_tm.tm_mday;
-  m_fp = fopen(log_full_name, "a");
-  if (m_fp == NULL) {
-    return false;
-  }
-  m_count = getNumberOfLines(log_full_name);
-  return true;
+  m_count = getNumberOfLines(logfilepath);
+  return;
 }
-void Log::write_log(int level, const char *format, ...) {
-  struct timeval now = {0, 0};
-  gettimeofday(&now, NULL);
-  time_t t = now.tv_sec;
-  struct tm *sys_tm = localtime(&t);
-  struct tm my_tm = *sys_tm;
-  char s[16] = {0};
-  switch (level) {
-  case 0:
-    strcpy(s, "[debug]:");
-    break;
-  case 1:
-    strcpy(s, "[info]:");
-    break;
-  case 2:
-    strcpy(s, "[warn]:");
-    break;
-  case 3:
-    strcpy(s, "[erro]:");
-    break;
-  default:
-    strcpy(s, "[info]:");
-    break;
+
+void Logger::Append(int level, const char *file, int line, const char *func,
+                    const char *fmt, ...) {
+  // 单行日志
+  char logline[LOGLINESIZE];
+
+  struct timeval tv;
+  gettimeofday(&tv, NULL);
+  static time_t lastsec = 0;
+  // 性能优化 1.秒数不变则不调用localtime.
+  // 2.并且继续复用之前的年月日时分秒的字符串，减少snprintf中太多参数格式化的开销
+  if (lastsec != tv.tv_sec) {
+    struct tm *ptm = localtime(&tv.tv_sec);
+    lastsec = tv.tv_sec;
+    int k = snprintf(save_ymdhms, 64, "%04d-%02d-%02d %02d:%02d:%02d",
+                     ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday,
+                     ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
+    save_ymdhms[k] = '\0';
   }
-  // 写入一个log，对m_count++, m_split_lines最大行数
-  m_mutex.lock();
-  m_count++;
-  if (m_today != my_tm.tm_mday ||
-      m_count % m_split_lines == 0) { // 新建日志文件
-    char new_log[256] = {0};
-    fflush(m_fp);
-    fclose(m_fp);
-    char tail[16] = {0};
-    snprintf(tail, 16, "%d_%02d_%02d_", my_tm.tm_year + 1900, my_tm.tm_mon + 1,
-             my_tm.tm_mday);
-    if (m_today != my_tm.tm_mday) {
-      snprintf(new_log, 255, "%s%s%s", dir_name, tail, log_name);
-      m_today = my_tm.tm_mday;
-      m_count = 0;
-    } else {
-      snprintf(new_log, 255, "%s%s%s_%lld", dir_name, tail, log_name,
-               m_count / m_split_lines);
+  char tem[3] = {save_ymdhms[8], save_ymdhms[9], '\0'};
+  int tem_day = atoi(tem);
+  {
+    std::lock_guard<std::mutex> lock(mtx);
+    m_count++;
+    if (m_today != tem_day || (m_count % m_split_lines == 0)) { // 新建日志文件
+      struct tm *ptm = localtime(&tv.tv_sec);
+      char new_log[256] = {0};
+      fflush(fp);
+      fclose(fp);
+      if (m_today != ptm->tm_mday) {
+        snprintf(new_log, 255, "%s/log_%d_%d_%d", m_logdir, ptm->tm_year + 1900,
+                 ptm->tm_mon + 1, ptm->tm_mday);
+        m_today = ptm->tm_mday;
+        m_count = 0;
+      } else {
+        snprintf(new_log, 255, "%s/log_%d_%d_%d_%lld", m_logdir,
+                 ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday,
+                 m_count / m_split_lines);
+      }
+      fp = fopen(new_log, "a");
     }
-    m_fp = fopen(new_log, "a");
   }
-  m_mutex.unlock();
+  std::thread::id tid = std::this_thread::get_id();
 
-  // 真正写入
-  va_list valist;
-  va_start(valist, format);
-  string log_str;
-  m_mutex.lock();
-  // 写入的具体时间内容格式
-  int n = snprintf(m_buf, 48, "%d-%02d-%02d %02d:%02d:%02d.%06ld %s ",
-                   my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday,
-                   my_tm.tm_hour, my_tm.tm_min, my_tm.tm_sec, now.tv_usec, s);
-  int m = vsnprintf(m_buf + n, m_log_buf_size - n - 1, format, valist);
+  uint32_t n =
+      snprintf(logline, LOGLINESIZE, "[%s][%s.%03ld][%s:%d %s][pid:%u] ",
+               LevelString[level], save_ymdhms, tv.tv_usec / 1000, file, line,
+               func, std::hash<std::thread::id>()(tid));
+  //uint32_t n = snprintf(logline, LOGLINESIZE, "[%s][%s.%03ld][%s:%d %s][] ", LevelString[level], \
+        save_ymdhms, tv.tv_usec/1000, file, line, func);
 
-  m_buf[m + n] = '\n';
-  m_buf[m + n + 1] = '\0';
-  log_str = m_buf;
-  m_mutex.unlock();
-  if (m_is_async && !m_log_queue->full()) {
-    m_log_queue->push(log_str);
-  } else {
-    m_mutex.lock();
-    fputs(log_str.c_str(), m_fp);
-    m_mutex.unlock();
+  // slow version，多个参数需要格式化
+  // uint32_t n = snprintf(logline, LOGLINESIZE, "[%s][%04d-%02d-%02d
+   // %02d:%02d:%02d.%03ld]%s:%d(%s): ", LevelString[level], ptm->tm_year+1900, \
+        ptm->tm_mon+1, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec,\
+   tv.tv_usec/1000, file, line, func);
+
+  va_list args;
+  va_start(args, fmt);
+  int m = vsnprintf(logline + n, LOGLINESIZE - n, fmt, args);
+  va_end(args);
+
+  // append to buf
+  logline[m + n] = '\n';
+  logline[m + n + 1] = '\0';
+  int len = n + m + 1;
+  LogBuffer *currentlogbuffer = nullptr;
+  // std::unordered_map<std::thread::id, LogBuffer *>::iterator iter;
+  std::map<std::thread::id, LogBuffer *>::iterator iter;
+  {
+    // TO DO：待优化，应该可以改为读写锁
+    std::lock_guard<std::mutex> lock(mtx);
+    iter = threadbufmap.find(tid);
+    if (iter != threadbufmap.end()) {
+      currentlogbuffer = iter->second;
+    } else {
+      threadbufmap[tid] = currentlogbuffer = new LogBuffer(BUFSIZE);
+      buftotalnum++;
+      std::cout << "------create new LogBuffer:" << buftotalnum << std::endl;
+    }
   }
-  va_end(valist);
+
+  // 空间足够
+  if (currentlogbuffer->GetAvailLen() >= len &&
+      currentlogbuffer->GetState() == LogBuffer::BufState::FREE) {
+    currentlogbuffer->append(logline, len);
+  }
+  // 空间不足，new新的缓冲区
+  else {
+    if (currentlogbuffer->GetState() == LogBuffer::BufState::FREE) {
+      currentlogbuffer->SetState(LogBuffer::BufState::FLUSH);
+      {
+        std::lock_guard<std::mutex> lock(flushmtx);
+        flushbufqueue.push(currentlogbuffer);
+      }
+      flushcond.notify_one();
+      // currentlogbuffer = nullptr;
+      // 从FREE队列取buf
+      std::lock_guard<std::mutex> lock(freemtx);
+      if (!freebufqueue.empty()) {
+        // std::cout << "get LogBuffer from freebufqueue" << buftotalnum <<
+        // std::endl;
+        currentlogbuffer = freebufqueue.front();
+        freebufqueue.pop();
+      }
+      // new buf
+      else {
+        // 日志缓冲占用的内存没有到达上限
+        if (buftotalnum * BUFSIZE < MEM_LIMIT) {
+          currentlogbuffer = new LogBuffer(BUFSIZE);
+          buftotalnum++;
+          std::cout << "create new LogBuffer:" << buftotalnum << std::endl;
+        } else {
+          ; // 无空间了丢弃日志
+          std::cout << "drop log!" << std::endl;
+          return;
+        }
+      }
+      currentlogbuffer->append(logline, len);
+      {
+        // update
+        std::lock_guard<std::mutex> lock2(mtx);
+        iter->second = currentlogbuffer;
+      }
+    } else {
+      // curbuf在flushbufqueue中，写入文件，更新
+      std::lock_guard<std::mutex> lock(freemtx);
+      if (!freebufqueue.empty()) {
+        currentlogbuffer = freebufqueue.front();
+        freebufqueue.pop();
+        {
+          // update
+          std::lock_guard<std::mutex> lock2(mtx);
+          iter->second = currentlogbuffer;
+        }
+      }
+    }
+  }
 }
 
-void Log::flush() {
-  m_mutex.lock();
-  fflush(m_fp);
-  m_mutex.unlock();
+void Logger::Flush() {
+  start = true;
+  while (true) {
+    /* code */
+    LogBuffer *p;
+    {
+      std::unique_lock<std::mutex> lock(flushmtx);
+      while (flushbufqueue.empty() && start) { // 多个消费者使用while
+        flushcond.wait(lock);
+      }
+      // 日志关闭，队列为空
+      if (flushbufqueue.empty() && start == false)
+        return; // std::cout << flushbufqueue.size() ;//<< std::endl;
+      p = flushbufqueue.front();
+      flushbufqueue.pop();
+    }
+    p->FlushToFile(fp);
+    p->SetState(LogBuffer::BufState::FREE);
+    {
+      std::lock_guard<std::mutex> lock(freemtx);
+      freebufqueue.push(p);
+    }
+  }
 }

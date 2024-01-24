@@ -33,8 +33,7 @@ void http_conn::initmysql_result(connection_pool *connPool) {
   connectionRAII mysqlcon(&mysql, connPool);
 
   if (mysql_query(mysql, "SELECT username,passwd FROM user")) {
-    LOG_ERROR("SELECT error:%s\n", mysql_error(mysql));
-    ;
+    LOG(LoggerLevel::ERROR, "SELECT error:%s\n", mysql_error(mysql))
   }
   // 从表中检索完整的结果集
   MYSQL_RES *result = mysql_store_result(mysql);
@@ -247,7 +246,7 @@ http_conn::HTTP_CODE http_conn::parse_headers(char *text) {
     text += strspn(text, " \t");
     m_content_length = atol(text);
   } else {
-    LOG_INFO("oop!unknow header: %s", text);
+    LOG(LoggerLevel::INFO, "oop!unknow header: %s", text);
   }
   return NO_REQUEST;
 }

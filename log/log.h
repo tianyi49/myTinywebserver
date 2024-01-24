@@ -1,86 +1,137 @@
+// Copyright 2020, Chen Shuaihao.
+//
+// Author: Chen Shuaihao
+//
+// -----------------------------------------------------------------------------
+// File: logger.h
+// -----------------------------------------------------------------------------
+//
+
 #ifndef LOG_H
 #define LOG_H
-#include "block_queue.h"
-#include <cstddef>
-#include <functional>
-#include <iostream>
-#include <pthread.h>
+
 #include <stdarg.h>
 #include <stdio.h>
-#include <string>
+#include <string.h>
+#include <sys/time.h>
+#include <time.h>
 
-using namespace std;
-class Log {
+#include <condition_variable>
+#include <iostream>
+#include <map>
+#include <mutex>
+#include <queue>
+#include <thread>
+#include <unordered_map>
+
+#define BUFSIZE 1 * 1024 * 1024     // 2MB
+#define LOGLINESIZE 4096            // 4KB
+#define MEM_LIMIT 512 * 1024 * 1024 // 512MB
+
+class
+    Logger; // 平时异步线程直接写，缓冲区不够空间换缓存区，单个文件写满直接丢弃日志，没采用环形缓冲区
+
+#define LOG(level, fmt, ...)                                                   \
+  if (0 == m_close_log) {                                                      \
+    do {                                                                       \
+      if (Logger::GetInstance()->GetLevel() <= level) {                        \
+        Logger::GetInstance()->Append(level, __FILE__, __LINE__, __FUNCTION__, \
+                                      fmt, ##__VA_ARGS__);                     \
+      }                                                                        \
+    } while (0);                                                               \
+  }
+
+enum LoggerLevel { DEBUG = 0, INFO, WARNING, ERROR, FATAL };
+
+// const char * LevelString[5] = {"DEBUG", "INFO", "WARNING", "ERROR", "FATAL"};
+
+class LogBuffer {
 public:
-  // C++11以后,使用局部变量懒汉不用加锁
-  static Log *get_instance() {
-    static Log instance;
-    return &instance;
-  }
-  // 必须static，否则会引入隐式的this
-  static void *flush_log_thread(void *args) {
-    Log::get_instance()->async_write_log();
-    return NULL;
-  }
-  // 可选择的参数有日志文件、日志缓冲区大小、最大行数以及最长日志条队列
-  bool init(const char *file_name, int close_log, int log_buf_size = 8192,
-            int split_lines = 5000000, int max_queue_size = 0);
-
-  void write_log(int level, const char *format, ...);
-
-  void flush(void);
-
-  int getNumberOfLines(char *filepath); // 统计文件行数，用于初始化m_count;
+  enum BufState {
+    FREE = 0,
+    FLUSH = 1
+  }; // FREE 空闲状态 可写入日志, FLUSH 待写入或正在写入文件
+  LogBuffer(int size = BUFSIZE);
+  ~LogBuffer();
+  int Getusedlen() const { return usedlen; }
+  int GetAvailLen() const { return bufsize - usedlen; }
+  int GetState() const { return state; }
+  void SetState(BufState s) { state = s; }
+  void append(const char *logline, int len);
+  void FlushToFile(FILE *fp);
 
 private:
-  Log();
-  virtual ~Log();
-  void *async_write_log() {
-    string single_log;
-    // 从阻塞队列中取出一个日志string，写入文件,双缓冲可以大幅提高速度
-    while (m_log_queue->pop(single_log)) {
-      m_mutex.lock();
-      fputs(single_log.c_str(), m_fp);
-      m_mutex.unlock();
-    }
-    return NULL;
-  }
-
-private:
-  char dir_name[128]; // 路径名
-  char log_name[128]; // Log文件名
-  int m_split_lines;  // 日志最大行数
-  int m_log_buf_size; // 日志缓冲区大小
-  long long m_count;  // 日志行数记录
-  int m_today;        // 因为按天分类,记录当前时间是那一天
-  FILE *m_fp;         // 打开log的文件指针
-  char *m_buf;
-  block_queue<string> *m_log_queue; // 阻塞队列
-  bool m_is_async;                  // 是否同步标志位
-  locker m_mutex;
-  int m_close_log; // 关闭日志
+  // log缓冲区
+  char *logbuffer;
+  // log缓冲区总大小
+  uint32_t bufsize;
+  // log缓冲区used长度
+  uint32_t usedlen;
+  // 缓冲区状态
+  int state;
 };
-//__VA_ARGS__的作用是：可变参数宏(variadic
-// macros)。用于宏定义中参数列表的最后一个参数为省略号，一般多用在调试信息。
-#define LOG_DEBUG(format, ...)                                                 \
-  if (0 == m_close_log) {                                                      \
-    Log::get_instance()->write_log(0, format, ##__VA_ARGS__);                  \
-    Log::get_instance()->flush();                                              \
-  }
-#define LOG_INFO(format, ...)                                                  \
-  if (0 == m_close_log) {                                                      \
-    Log::get_instance()->write_log(1, format, ##__VA_ARGS__);                  \
-    Log::get_instance()->flush();                                              \
-  }
-#define LOG_WARN(format, ...)                                                  \
-  if (0 == m_close_log) {                                                      \
-    Log::get_instance()->write_log(2, format, ##__VA_ARGS__);                  \
-    Log::get_instance()->flush();                                              \
-  }
-#define LOG_ERROR(format, ...)                                                 \
-  if (0 == m_close_log) {                                                      \
-    Log::get_instance()->write_log(3, format, ##__VA_ARGS__);                  \
-    Log::get_instance()->flush();                                              \
+
+class Logger {
+private:
+  // 日志等级
+  int level;
+  // 打开的日志文件指针
+  FILE *fp;
+  // 当前使用的缓冲区
+  // LogBuffer *currentlogbuffer;
+  // std::unordered_map<std::thread::id, LogBuffer *> threadbufmap;
+  std::map<std::thread::id, LogBuffer *> threadbufmap;
+  // mutex
+  std::mutex mtx;
+  // 缓冲区总数
+  int buftotalnum;
+  // flushmutex
+  std::mutex flushmtx;
+  // flushcond
+  std::condition_variable flushcond;
+  // flush队列
+  std::queue<LogBuffer *> flushbufqueue;
+  // freeutex
+  std::mutex freemtx;
+  // FREE队列
+  std::queue<LogBuffer *> freebufqueue;
+  // flush thread
+  std::thread flushthread;
+  // flushthread state
+  bool start;
+  // save_ymdhms数组，保存年月日时分秒以便复用
+  char save_ymdhms[64];
+  char m_logdir[64];
+  int m_today; // 因为按天分类,记录当前时间是那一天
+  int m_split_lines = 800000; // 日志最大行数
+  long long m_count;          // 日志行数记录
+  int m_close_log;            // 关闭日志
+public:
+  Logger(/* args */);
+  ~Logger();
+
+  // 单例模式
+  static Logger *GetInstance() {
+    static Logger logger;
+    return &logger;
   }
 
-#endif
+  // 初始化
+  void Init(const char *logdir, LoggerLevel lev, int close_log = 0,
+            int split_lines = 5000000);
+
+  // 统计文件行数，用于初始化m_count;
+  int getNumberOfLines(char *filepath);
+
+  // 获取日志等级
+  int GetLevel() const { return level; }
+
+  // 写日志__FILE__, __LINE__, __func__,
+  void Append(int level, const char *file, int line, const char *func,
+              const char *fmt, ...);
+
+  // flush func
+  void Flush();
+};
+
+#endif //_LOGGER_H_
