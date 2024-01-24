@@ -111,10 +111,10 @@ public:
   // pop时,如果当前队列没有元素,将会等待条件变量
   bool pop(T &item) {
     m_mutex.lock();
-    while (m_size <= 0) {
+    while (m_size <= 0) { // 多个消费者的时候，这里要是用while而不是if
       if (!m_cond.wait(m_mutex.get())) {
         m_mutex.unlock();
-        return false;
+        return false; // 永不进入
       }
     }
     m_front = (m_front + 1) % m_max_size;

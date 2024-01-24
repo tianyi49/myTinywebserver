@@ -1,0 +1,28 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-o",
+      "logtest",
+      "logtest.cpp"
+    ],
+    "directory": "/home/yy/code_project/myTinyWebServer/code_test/doubeBuffer_log",
+    "file": "/home/yy/code_project/myTinyWebServer/code_test/doubeBuffer_log/logtest.cpp",
+    "output": "/home/yy/code_project/myTinyWebServer/code_test/doubeBuffer_log/logtest"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-o",
+      "logtest",
+      "logger.cpp"
+    ],
+    "directory": "/home/yy/code_project/myTinyWebServer/code_test/doubeBuffer_log",
+    "file": "/home/yy/code_project/myTinyWebServer/code_test/doubeBuffer_log/logger.cpp",
+    "output": "/home/yy/code_project/myTinyWebServer/code_test/doubeBuffer_log/logtest"
+  }
+]
