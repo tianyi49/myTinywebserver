@@ -22,7 +22,6 @@
 #include <mutex>
 #include <queue>
 #include <thread>
-#include <unordered_map>
 
 #define BUFSIZE 1 * 1024 * 1024     // 2MB
 #define LOGLINESIZE 4096            // 4KB

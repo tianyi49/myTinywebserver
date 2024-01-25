@@ -106,9 +106,9 @@ private:
   char save_ymdhms[64];
   char m_logdir[64];
   int m_today; // 因为按天分类,记录当前时间是那一天
-  int m_split_lines = 800000; // 日志最大行数
-  long long m_count;          // 日志行数记录
-  int m_close_log;            // 关闭日志
+  int m_split_lines = 1800000; // 日志最大行数
+  long long m_count;           // 日志行数记录
+  int m_close_log;             // 关闭日志
 public:
   Logger(/* args */);
   ~Logger();

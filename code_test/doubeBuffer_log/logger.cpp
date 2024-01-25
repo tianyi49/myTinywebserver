@@ -235,7 +235,10 @@ void Logger::Append(int level, const char *file, int line, const char *func,
         // 日志缓冲占用的内存没有到达上限
         if (buftotalnum * BUFSIZE < MEM_LIMIT) {
           currentlogbuffer = new LogBuffer(BUFSIZE);
-          buftotalnum++;
+          {
+            std::lock_guard<std::mutex> lock1(mtx);
+            buftotalnum++;
+          }
           std::cout << "create new LogBuffer:" << buftotalnum << std::endl;
         } else {
           ; // 无空间了丢弃日志
@@ -257,7 +260,6 @@ void Logger::Append(int level, const char *file, int line, const char *func,
         freebufqueue.pop();
         {
           // update
-          std::lock_guard<std::mutex> lock2(mtx);
           iter->second = currentlogbuffer;
         }
       }
