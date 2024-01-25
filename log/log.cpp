@@ -284,8 +284,28 @@ void Logger::Flush() {
     {
       std::unique_lock<std::mutex> lock(flushmtx);
       while (flushbufqueue.empty() && start) { // 多个消费者使用while
-        if (flushcond.wait_for(lock, std::chrono::seconds(5)) ==
+        if (flushcond.wait_for(lock, std::chrono::seconds(10)) ==
             std::cv_status::timeout) {
+          std::lock_guard<std::mutex> lock1(mtx);
+          auto itr = threadbufmap.begin();
+          for (; itr != threadbufmap.end(); itr++) {
+            if (itr->second->GetState() == LogBuffer::BufState::FREE &&
+                buftotalnum * BUFSIZE < MEM_LIMIT) {
+              flushbufqueue.push(itr->second); // 全部flush
+              { // 重新得到空闲的currentlogbuffer
+                std::lock_guard<std::mutex> lock(freemtx);
+                if (!freebufqueue.empty()) {
+                  itr->second = freebufqueue.front();
+                  freebufqueue.pop();
+                } else { // new buf
+                  itr->second = new LogBuffer(BUFSIZE);
+                  buftotalnum++;
+                  std::cout << "flush:create new LogBuffer :" << buftotalnum
+                            << std::endl;
+                }
+              }
+            }
+          }
         }
       }
       // 日志关闭，队列为空
