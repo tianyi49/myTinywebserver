@@ -1,12 +1,3 @@
-// Copyright 2020, Chen Shuaihao.
-//
-// Author: Chen Shuaihao
-//
-// -----------------------------------------------------------------------------
-// File: logtest.cpp
-// -----------------------------------------------------------------------------
-//
-
 #include <stdint.h>
 #include <stdio.h>
 #include <sys/time.h>

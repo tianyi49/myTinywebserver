@@ -1,12 +1,3 @@
-// Copyright 2020, Chen Shuaihao.
-//
-// Author: Chen Shuaihao
-//
-// -----------------------------------------------------------------------------
-// File: logger.cpp
-// -----------------------------------------------------------------------------
-//
-
 #include "logger.h"
 #include <cstdlib>
 const char *LevelString[5] = {"DEBUG", "INFO", "WARNING", "ERROR", "FATAL"};
