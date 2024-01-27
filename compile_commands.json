@@ -1,1 +1,100 @@
-[]
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++14",
+      "-O2",
+      "-o",
+      "server",
+      "main.cpp"
+    ],
+    "directory": "/home/yy/code_project/myTinyWebServer",
+    "file": "/home/yy/code_project/myTinyWebServer/main.cpp",
+    "output": "/home/yy/code_project/myTinyWebServer/server"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++14",
+      "-O2",
+      "-o",
+      "server",
+      "timer/heap_timer.cpp"
+    ],
+    "directory": "/home/yy/code_project/myTinyWebServer",
+    "file": "/home/yy/code_project/myTinyWebServer/timer/heap_timer.cpp",
+    "output": "/home/yy/code_project/myTinyWebServer/server"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++14",
+      "-O2",
+      "-o",
+      "server",
+      "http/http_conn.cpp"
+    ],
+    "directory": "/home/yy/code_project/myTinyWebServer",
+    "file": "/home/yy/code_project/myTinyWebServer/http/http_conn.cpp",
+    "output": "/home/yy/code_project/myTinyWebServer/server"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++14",
+      "-O2",
+      "-o",
+      "server",
+      "log/log.cpp"
+    ],
+    "directory": "/home/yy/code_project/myTinyWebServer",
+    "file": "/home/yy/code_project/myTinyWebServer/log/log.cpp",
+    "output": "/home/yy/code_project/myTinyWebServer/server"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++14",
+      "-O2",
+      "-o",
+      "server",
+      "CGImysql/sql_connection_pool.cpp"
+    ],
+    "directory": "/home/yy/code_project/myTinyWebServer",
+    "file": "/home/yy/code_project/myTinyWebServer/CGImysql/sql_connection_pool.cpp",
+    "output": "/home/yy/code_project/myTinyWebServer/server"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++14",
+      "-O2",
+      "-o",
+      "server",
+      "webserver/webserver.cpp"
+    ],
+    "directory": "/home/yy/code_project/myTinyWebServer",
+    "file": "/home/yy/code_project/myTinyWebServer/webserver/webserver.cpp",
+    "output": "/home/yy/code_project/myTinyWebServer/server"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++14",
+      "-O2",
+      "-o",
+      "server",
+      "config.cpp"
+    ],
+    "directory": "/home/yy/code_project/myTinyWebServer",
+    "file": "/home/yy/code_project/myTinyWebServer/config.cpp",
+    "output": "/home/yy/code_project/myTinyWebServer/server"
+  }
+]

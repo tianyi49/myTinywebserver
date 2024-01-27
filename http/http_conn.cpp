@@ -26,8 +26,8 @@ const char *error_500_title = "Internal Error";
 const char *error_500_form =
     "There was an unusual problem serving the request file.\n";
 
-locker m_lock;
-map<string, string> users;
+locker http_conn::m_lock;
+map<string, string> http_conn::m_users;
 void http_conn::initmysql_result(connection_pool *connPool) {
   MYSQL *mysql = NULL;
   connectionRAII mysqlcon(&mysql, connPool);
@@ -43,7 +43,7 @@ void http_conn::initmysql_result(connection_pool *connPool) {
   // 返回所有字段结构的数组
   MYSQL_FIELD *fields = mysql_fetch_fields(result);
   while (MYSQL_ROW row = mysql_fetch_row(result)) {
-    users[row[0]] = row[1];
+    m_users[row[0]] = row[1];
   }
   mysql_free_result(result);
 }
@@ -336,10 +336,10 @@ http_conn::HTTP_CODE http_conn::do_request() {
       strcat(sql_insert, password);
       strcat(sql_insert, "')");
 
-      if (users.find(name) == users.end()) {
+      if (m_users.find(name) == m_users.end()) {
         m_lock.lock();
         int res = mysql_query(mysql, sql_insert);
-        users[name] = password;
+        m_users[name] = password;
         if (!res)
           strcpy(m_url, "/log.html");
         else
@@ -351,7 +351,7 @@ http_conn::HTTP_CODE http_conn::do_request() {
     // 如果是登录，直接判断
     // 若浏览器端输入的用户名和密码在表中可以查找到，返回1，否则返回0
     else if (*(p + 1) == '2') {
-      if (users.find(name) != users.end() && users[name] == password)
+      if (m_users.find(name) != m_users.end() && m_users[name] == password)
         strcpy(m_url, "/welcome.html");
       else
         strcpy(m_url, "/logError.html");

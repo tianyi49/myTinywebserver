@@ -15,7 +15,9 @@
                 "-t",
                 "11",
                 "-c",
-                "0"
+                "1",
+                "-a",
+                "1"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

@@ -116,7 +116,8 @@ private:
   int bytes_have_send;
   char *doc_root; // root文件目录路径
 
-  map<string, string> m_users;
+  static map<string, string> m_users;
+  static locker m_lock;
   int m_TRIGMode;
   int m_close_log;
 
