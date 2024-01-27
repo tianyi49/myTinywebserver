@@ -6,6 +6,7 @@
 #include <exception>
 #include <list>
 #include <pthread.h>
+
 template <typename T> class threadpool {
 public:
   /*thread_number是线程池中线程的数量，max_requests是请求队列中最多允许的、等待处理的请求的数量*/
@@ -104,6 +105,7 @@ template <typename T> void threadpool<T>::run() {
           connectionRAII mysqlcon(&request->mysql, m_connPool);
           request->process();
         } else {
+          request->close_conn();
           request->improv = 1;
           request->timer_flag = 1;
         }
@@ -111,6 +113,7 @@ template <typename T> void threadpool<T>::run() {
         if (request->write()) {
           request->improv = 1;
         } else {
+          request->close_conn();
           request->improv = 1;
           request->timer_flag = 1;
         }

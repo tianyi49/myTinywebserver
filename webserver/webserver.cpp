@@ -140,20 +140,21 @@ void WebServer::dealwithread(int sockfd) {
   shared_ptr<util_timer> timer = users_timer[sockfd].timer;
   // reactor
   if (1 == m_actormodel) {
-    if (timer) {
-      adjust_timer(timer);
-    }
+    // if (timer) {
+    //   adjust_timer(timer);
+    // }
     m_pool->append(users + sockfd, 0);
-    while (true) {
-      if (1 == users[sockfd].improv) {
-        if (1 == users[sockfd].timer_flag) {
-          deal_timer(timer, sockfd);
-          users[sockfd].timer_flag = 0;
-        }
-        users[sockfd].improv = 0;
-        break;
-      }
-    }
+    // while (true) { //
+    // 同步读写太浪费！！！保证数据被顺利读入和写入的，如果没有顺利读入和写入就会被释放。
+    //   if (1 == users[sockfd].improv) {
+    //     if (1 == users[sockfd].timer_flag) {
+    //       deal_timer(timer, sockfd);
+    //       users[sockfd].timer_flag = 0;
+    //     }
+    //     users[sockfd].improv = 0;
+    //     break;
+    //   }
+    // }
   } else { // proactor
     if (users[sockfd].read_once()) {
       LOG(LoggerLevel::INFO, "deal with the client(%s)",
@@ -166,26 +167,27 @@ void WebServer::dealwithread(int sockfd) {
       }
     } else {
       deal_timer(timer, sockfd);
+      printf("dealwithread:deal_timer()"); // 不应该出现
     }
   }
 }
 void WebServer::dealwithwrite(int sockfd) {
   shared_ptr<util_timer> timer = users_timer[sockfd].timer;
   if (1 == m_actormodel) {
-    if (timer) {
-      adjust_timer(timer);
-    }
+    // if (timer) {
+    //   adjust_timer(timer);
+    // }
     m_pool->append(users + sockfd, 1);
-    while (true) {
-      if (1 == users[sockfd].improv) {
-        if (1 == users[sockfd].timer_flag) {
-          deal_timer(timer, sockfd);
-          users[sockfd].timer_flag = 0;
-        }
-        users[sockfd].improv = 0;
-        break;
-      }
-    }
+    // while (true) {
+    //   if (1 == users[sockfd].improv) {
+    //     if (1 == users[sockfd].timer_flag) {
+    //       deal_timer(timer, sockfd);
+    //       users[sockfd].timer_flag = 0;
+    //     }
+    //     users[sockfd].improv = 0;
+    //     break;
+    //   }
+    // }
   } else { // proactor
     if (users[sockfd].write()) {
       LOG(LoggerLevel::INFO, "send data to the client(%s)",
@@ -195,6 +197,7 @@ void WebServer::dealwithwrite(int sockfd) {
       }
     } else {
       deal_timer(timer, sockfd);
+      printf("dealwithwrite:deal_timer()"); // 不应该出现
     }
   }
 }
@@ -277,7 +280,7 @@ void WebServer::eventListen() {
   setsockopt(m_listenfd, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
   ret = bind(m_listenfd, (struct sockaddr *)&address, sizeof(address));
   assert(ret != -1);
-  ret = listen(m_listenfd, 128);
+  ret = listen(m_listenfd, 1024);
   assert(ret != -1);
   utils.init(TIMESLOT);
 
