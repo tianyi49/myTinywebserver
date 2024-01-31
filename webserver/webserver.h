@@ -28,6 +28,9 @@ class WebServer {
 public:
   WebServer();
   ~WebServer();
+  WebServer(const WebServer &) = delete;
+  WebServer &operator=(const WebServer &) = delete;
+
   void init(int port, string user, string passWord, string databaseName,
             int log_write, int opt_linger, int trigmode, int sql_num,
             int thread_num, int close_log, int actor_model);

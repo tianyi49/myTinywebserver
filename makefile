@@ -1,5 +1,5 @@
 CXX ?= g++
-DEBUG ?= 0
+DEBUG ?= 1
 CXXFLAGS=-std=c++14
 ifeq ($(DEBUG), 1)
     CXXFLAGS += -g

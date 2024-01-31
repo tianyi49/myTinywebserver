@@ -45,6 +45,8 @@ private:
 public:
   heap_timer() : m_heapVec(initHeapSize) {} // 提前分配vec大小，避免动态扩容开销
   ~heap_timer() = default;
+  heap_timer(const heap_timer &) = default;
+  heap_timer &operator=(const heap_timer &) = delete;
 
 public:
   size_t get_size() { return m_heapVec.size(); }
@@ -80,7 +82,8 @@ class Utils {
 public:
   Utils() {}
   ~Utils() {}
-
+  Utils(const Utils &) = default;
+  Utils &operator=(const Utils &) = delete;
   void init(int timeslot);
   // 信号处理函数
   static void sig_handler(int sig);
