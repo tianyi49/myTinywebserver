@@ -18,7 +18,6 @@ public:
 
 private:
   /*工作线程运行的函数，它不断从工作队列中取出任务并执行之*/
-  static void *worker(void *arg);
   void run();
 
 private:
@@ -42,7 +41,14 @@ threadpool<T>::threadpool(int actor_model, connection_pool *connpool,
   if (!m_threads)
     throw std::exception();
   for (int i = 0; i < m_thread_num; ++i) {
-    if (pthread_create(&m_threads[i], NULL, worker, this) != 0) {
+    if (pthread_create(
+            &m_threads[i], NULL,
+            [](void *arg) -> void * {
+              threadpool *pool = (threadpool *)arg;
+              pool->run();
+              return pool;
+            },
+            this) != 0) {
       delete[] m_threads;
       throw std::exception();
     }
@@ -76,11 +82,6 @@ template <typename T> bool threadpool<T>::append_p(T *request) {
   m_queuelocker.unlock();
   m_queuestat.post();
   return true;
-}
-template <typename T> void *threadpool<T>::worker(void *arg) {
-  threadpool *pool = (threadpool *)arg;
-  pool->run();
-  return pool;
 }
 template <typename T> void threadpool<T>::run() {
 
