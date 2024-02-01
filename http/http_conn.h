@@ -1,5 +1,10 @@
 #ifndef HTTP_CONN_H
 #define HTTP_CONN_H
+#include "../CGImysql/sql_connection_pool.h"
+#include "../buffer/buffer.h"
+#include "../lock/lock.h"
+#include "../log/log.h"
+#include "../timer/heap_timer.h"
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <map>
@@ -13,13 +18,9 @@
 #include <sys/uio.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-#include "../CGImysql/sql_connection_pool.h"
-#include "../lock/lock.h"
-#include "../log/log.h"
-#include "../timer/heap_timer.h"
 class http_conn {
 public:
+  http_conn() : m_read_buf(READ_BUFFER_SIZE), m_write_buf(WRITE_BUFFER_SIZE) {}
   static const int FILENAME_LEN = 200;
   static const int READ_BUFFER_SIZE = 2048;
   static const int WRITE_BUFFER_SIZE = 1024;
@@ -56,12 +57,10 @@ public:
             string passwd, string sqlname);
   void close_conn(bool real_close = true);
   void process();
-  bool read_once();
-  bool write();
+  bool read_once(int *saveErrno);
+  bool write(int *saveErrno);
   sockaddr_in *get_address() { return &m_address; }
   void initmysql_result(connection_pool *connPool);
-  int timer_flag;
-  int improv;
 
 private:
   void init();
@@ -71,17 +70,13 @@ private:
   HTTP_CODE parse_headers(char *text);
   HTTP_CODE parse_content(char *text);
   HTTP_CODE do_request();
-  char *get_line() { return m_read_buf + m_start_line; };
+  char *get_line() { return m_read_buf.BeginPtr() + m_start_line; };
   LINE_STATUS parse_line();
   void unmap();
-  bool add_response(const char *format, ...);
-  bool add_content(const char *content);
-  bool add_status_line(int status, const char *title);
-  bool add_headers(int content_length);
-  bool add_content_type();
-  bool add_content_length(int content_length);
-  bool add_linger();
-  bool add_blank_line();
+  void add_content(const char *content);
+  void add_status_line(int status, const char *title);
+  void add_headers(int content_length);
+  void add_content_type();
 
 public:
   static int m_epollfd;
@@ -92,11 +87,12 @@ public:
 private:
   int m_sockfd;
   sockaddr_in m_address;
-  char m_read_buf[READ_BUFFER_SIZE];
+  ReadBuffer m_read_buf;
   long m_read_idx;
   long m_checked_idx;
   int m_start_line;
-  char m_write_buf[WRITE_BUFFER_SIZE];
+  WriteBuffer m_write_buf;
+
   int m_write_idx; // 指示buffer中的长度
   CHECK_STATE m_check_state;
   METHOD m_method;
@@ -108,8 +104,6 @@ private:
   bool m_linger;
   char *m_file_address;
   struct stat m_file_stat;
-  struct iovec m_iv[2];
-  int m_iv_count;
   int cgi;        // 是否启用的POST
   char *m_string; // 存储请求头数据
   int bytes_to_send;

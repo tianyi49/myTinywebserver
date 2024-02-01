@@ -1,0 +1,392 @@
+[INFO][2024-02-01 19:48:55.304][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 19:48:55.304][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 19:48:55.304][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 19:48:55.304][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 19:48:55.304][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 19:48:55.304][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 19:48:55.304][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 19:48:47.147][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:48.157][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:49.157][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:50.157][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:51.158][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:52.158][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:53.158][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:54.158][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:55.158][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:55.304][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 19:48:55.304][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 19:48:55.304][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 19:48:55.304][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 19:48:55.304][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 16
+[INFO][2024-02-01 19:48:56.328][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: GET
+[INFO][2024-02-01 19:48:56.328][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 19:48:56.328][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 19:48:56.328][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 19:48:56.328][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 19:48:56.328][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 19:48:56.328][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 19:48:56.158][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:56.328][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 19:48:56.328][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 19:48:56.328][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 19:48:56.328][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 19:48:56.328][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 19:48:57.158][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:58.158][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:48:59.159][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:00.159][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:01.159][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:02.159][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:03.159][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:04.159][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:05.159][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:06.159][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:07.160][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:08.160][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:09.160][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:10.160][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:11.160][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:12.161][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:13.161][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:14.161][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:15.161][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:16.161][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:17.162][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:18.162][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:19.162][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:20.162][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:21.162][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:22.162][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:23.163][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:24.163][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:25.163][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:26.163][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:27.163][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:28.163][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:29.163][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:30.164][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:31.164][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:32.164][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:33.164][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:34.164][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:35.167][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:36.167][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:37.167][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:38.167][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:39.167][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:40.167][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:41.167][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:42.167][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:43.168][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:44.168][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 19:49:45.168][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:24:55.052][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:24:56.052][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:24:57.053][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:24:58.053][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:24:59.053][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:00.053][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:01.053][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:02.053][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:03.054][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:04.054][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:05.054][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:06.054][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:07.054][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:08.054][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:09.054][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:10.054][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:11.055][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:12.055][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:25:13.055][webserver/webserver.cpp:319 eventLoop][pid:2249352067] timer tick
+[INFO][2024-02-01 20:26:58.355][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:27:31.910][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:32:06.968][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:32:06.968][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:35:05.624][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 20:39:27.967][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:39:27.967][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:41:33.702][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 20:45:04.258][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: GET
+[INFO][2024-02-01 20:45:04.258][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 20:45:04.258][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 20:45:04.258][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 20:45:04.258][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 20:45:04.258][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 20:45:04.258][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 20:45:03.233][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 20:45:03.233][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 20:45:03.233][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 20:45:03.233][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 20:45:03.233][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 20:45:03.233][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 20:45:03.233][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 20:45:00.585][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:45:00.585][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:45:03.233][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 20:45:03.233][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:45:03.234][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 16
+[INFO][2024-02-01 20:45:04.258][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:45:04.258][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:45:04.258][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 20:45:04.258][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:45:04.259][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 20:45:09.268][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:45:09.268][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:45:11.487][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 16
+[INFO][2024-02-01 20:45:11.868][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:45:11.868][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:45:14.885][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 20:46:06.004][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: GET
+[INFO][2024-02-01 20:46:06.004][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 20:46:06.004][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 20:46:06.004][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 20:46:06.004][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 20:46:06.004][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 20:46:06.004][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 20:46:04.985][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 20:46:04.985][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 20:46:04.985][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 20:46:04.985][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 20:46:04.985][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 20:46:04.985][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 20:46:04.985][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 20:46:04.985][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:46:04.985][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:46:04.985][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 20:46:04.985][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:46:04.985][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 16
+[INFO][2024-02-01 20:46:06.003][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:46:06.003][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:46:06.004][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 20:46:06.004][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:46:06.004][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 20:46:11.013][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:46:11.013][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:52:39.648][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 20:52:39.648][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 20:52:39.648][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 20:52:39.648][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 20:52:39.648][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 20:52:39.648][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 20:52:39.648][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 20:52:39.648][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:52:39.648][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:57:04.618][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 20:57:04.618][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 20:57:04.618][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 20:57:04.618][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 20:57:04.618][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 20:57:04.618][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 20:57:04.618][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 20:57:04.618][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 20:57:04.618][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:58:15.724][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 20:59:57.847][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 20:59:57.847][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 20:59:58.717][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 16
+[INFO][2024-02-01 21:06:38.939][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: GET
+[INFO][2024-02-01 21:06:38.939][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:06:38.939][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:06:38.939][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:06:38.939][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:06:38.939][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:06:38.939][http/http_conn.cpp:238 parse_headers][pid:1475460657] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:06:37.913][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:06:37.913][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:06:37.913][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:06:37.913][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:06:37.913][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:06:37.913][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:06:37.913][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:06:37.913][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:06:37.913][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:06:37.913][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 21:06:37.913][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:06:37.913][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 16
+[INFO][2024-02-01 21:06:38.939][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:06:38.939][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:06:38.939][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 21:06:38.939][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:06:38.939][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 21:06:40.457][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:06:40.458][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:07:42.311][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:07:42.311][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:07:42.311][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:07:42.311][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:07:42.311][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:07:42.311][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:07:42.311][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:07:42.311][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:07:42.311][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:08:32.894][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:08:32.894][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:08:32.894][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:08:32.894][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:08:32.894][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:08:32.894][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:08:32.894][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:08:32.893][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:08:32.894][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:09:57.287][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:09:57.287][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:09:57.287][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:09:57.287][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:09:57.287][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:09:57.287][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:09:57.287][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:09:57.287][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:09:57.287][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:14:35.475][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:14:35.475][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:14:35.475][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:14:35.475][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:14:35.475][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:14:35.475][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:14:35.475][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:14:35.475][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:14:35.475][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:17:06.347][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:17:06.347][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:17:06.347][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:17:06.347][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:17:06.347][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:17:06.347][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:17:06.347][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:17:06.347][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:17:06.347][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:18:05.060][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:18:05.060][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:18:05.060][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:18:05.060][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:18:05.060][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:18:05.060][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:18:05.060][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:18:05.060][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:18:05.060][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:30:06.819][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:30:06.819][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:30:06.819][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:30:06.819][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:30:06.819][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:30:06.819][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:30:06.819][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:30:06.818][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:30:06.819][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:34:47.051][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: GET
+[INFO][2024-02-01 21:34:47.051][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:34:47.051][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:34:47.051][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:34:47.051][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:34:47.051][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:34:47.051][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:34:47.051][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:34:47.051][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:35:12.568][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:35:12.568][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:35:12.568][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:35:12.568][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:35:12.568][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:35:12.568][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:35:12.568][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:35:12.568][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:35:12.568][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:35:23.683][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: GET
+[INFO][2024-02-01 21:35:23.683][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:35:23.683][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:35:23.683][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:35:23.683][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:35:23.683][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:35:23.683][http/http_conn.cpp:238 parse_headers][pid:3077951282] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:35:23.683][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 16
+[INFO][2024-02-01 21:35:23.683][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:35:23.683][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:35:26.011][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 21:35:26.011][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:35:26.011][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:38:51.717][http/http_conn.cpp:238 parse_headers][pid:1023118288] oop!unknow header: GET
+[INFO][2024-02-01 21:38:51.717][http/http_conn.cpp:238 parse_headers][pid:1023118288] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:38:51.717][http/http_conn.cpp:238 parse_headers][pid:1023118288] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:38:51.717][http/http_conn.cpp:238 parse_headers][pid:1023118288] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:38:51.717][http/http_conn.cpp:238 parse_headers][pid:1023118288] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:38:51.717][http/http_conn.cpp:238 parse_headers][pid:1023118288] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:38:51.717][http/http_conn.cpp:238 parse_headers][pid:1023118288] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:38:51.717][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:38:51.717][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:51:38.398][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:51:38.398][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:51:38.398][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:51:38.398][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:51:38.398][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:51:38.398][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:51:38.398][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:51:38.398][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:51:38.398][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 21:52:29.862][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 21:52:29.862][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 21:52:29.862][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 21:52:29.862][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 21:52:29.862][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 21:52:29.862][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 21:52:29.862][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 21:52:29.861][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 21:52:29.862][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:00:18.596][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: GET
+[INFO][2024-02-01 22:00:18.596][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 22:00:18.596][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 22:00:18.596][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 22:00:18.596][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 22:00:18.596][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 22:00:18.596][http/http_conn.cpp:238 parse_headers][pid:1938379661] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 22:00:18.596][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 22:00:18.596][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:15:55.151][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: GET
+[INFO][2024-02-01 22:15:55.151][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 22:15:55.151][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 22:15:55.151][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 22:15:55.151][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 22:15:55.151][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 22:15:55.151][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 22:15:55.151][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:15:55.151][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 22:15:55.151][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:15:55.277][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 22:15:55.277][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:16:00.768][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: POST
+[INFO][2024-02-01 22:16:00.768][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 22:16:00.768][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 22:16:00.768][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Origin: http://192.168.100.128:9006
+[INFO][2024-02-01 22:16:00.768][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Content-Type: application/x-www-form-urlencoded
+[INFO][2024-02-01 22:16:00.768][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 22:16:00.768][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 22:16:00.768][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Referer: http://192.168.100.128:9006/0
+[INFO][2024-02-01 22:16:00.768][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 22:16:00.768][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 22:16:00.768][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 22:16:00.768][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:16:00.768][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 22:16:00.768][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:16:05.032][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 22:16:05.032][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:16:19.433][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 22:16:19.438][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 22:16:19.438][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:16:20.906][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 17
+[INFO][2024-02-01 22:16:20.906][webserver/webserver.cpp:82 deal_timer][pid:2249352067] close fd 16
+[INFO][2024-02-01 22:16:24.682][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 22:16:24.682][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:17:42.712][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: GET
+[INFO][2024-02-01 22:17:42.712][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Cache-Control: max-age=0
+[INFO][2024-02-01 22:17:42.712][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Upgrade-Insecure-Requests: 1
+[INFO][2024-02-01 22:17:42.712][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0
+[INFO][2024-02-01 22:17:42.712][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+[INFO][2024-02-01 22:17:42.712][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Accept-Encoding: gzip, deflate
+[INFO][2024-02-01 22:17:42.712][http/http_conn.cpp:238 parse_headers][pid:611501915] oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+[INFO][2024-02-01 22:17:42.712][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 22:17:42.712][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:18:21.367][webserver/webserver.cpp:168 dealwithwrite][pid:2249352067] send data to the client(192.168.100.128)
+[INFO][2024-02-01 22:18:21.367][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once
+[INFO][2024-02-01 22:18:21.367][webserver/webserver.cpp:147 dealwithread][pid:2249352067] deal with the client(192.168.100.128)
+[INFO][2024-02-01 22:18:21.367][webserver/webserver.cpp:73 adjust_timer][pid:2249352067] adjust timer once

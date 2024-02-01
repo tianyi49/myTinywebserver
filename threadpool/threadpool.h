@@ -101,22 +101,19 @@ template <typename T> void threadpool<T>::run() {
     {
       if (0 == request->m_state) // 读为0
       {
-        if (request->read_once()) {
-          request->improv = 1; // 读写数据完成，进入逻辑处理
+        int readErrno = 0;
+        if (request->read_once(&readErrno)) {
+          // 读写数据完成，进入逻辑处理
           connectionRAII mysqlcon(&request->mysql, m_connPool);
           request->process();
         } else {
           request->close_conn();
-          request->improv = 1;
-          request->timer_flag = 1;
         }
       } else {
-        if (request->write()) {
-          request->improv = 1;
+        int writeErrno = 0;
+        if (request->write(&writeErrno)) {
         } else {
           request->close_conn();
-          request->improv = 1;
-          request->timer_flag = 1;
         }
       }
     }

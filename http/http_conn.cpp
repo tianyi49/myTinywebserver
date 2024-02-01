@@ -112,11 +112,8 @@ void http_conn::init() {
   m_write_idx = 0;
   cgi = 0;
   m_state = 0;
-  timer_flag = 0;
-  improv = 0;
-  memset(m_read_buf, '\0', READ_BUFFER_SIZE);
-  memset(m_write_buf, '\0', WRITE_BUFFER_SIZE);
-  memset(m_real_file, '\0', FILENAME_LEN);
+  m_read_buf.RetrieveAll();
+  m_write_buf.RetrieveAll();
 }
 // 从状态机，用于分析出一行内容
 // 返回值为行的读取状态，有LINE_OK,LINE_BAD,LINE_OPEN
@@ -150,24 +147,18 @@ http_conn::LINE_STATUS http_conn::parse_line() {
 }
 // 循环读取客户数据，直到无数据可读或对方关闭连接
 // 非阻塞ET工作模式下，需要一次性将数据读完
-bool http_conn::read_once() {
-  if (m_read_idx >= READ_BUFFER_SIZE) {
-    return false;
-  }
+bool http_conn::read_once(int *saveErrno) {
   int bytes_read = 0;
-
   // LT读取数据
   if (0 == m_TRIGMode) {
-    bytes_read = recv(m_sockfd, m_read_buf + m_read_idx,
-                      READ_BUFFER_SIZE - m_read_idx, 0);
+    bytes_read = m_read_buf.TransFd(m_sockfd, saveErrno);
     if (bytes_read <= 0)
       return false;
     m_read_idx += bytes_read;
     return true;
   } else {
     while (1) {
-      bytes_read = recv(m_sockfd, m_read_buf + m_read_idx,
-                        READ_BUFFER_SIZE - m_read_idx, 0);
+      bytes_read = m_read_buf.TransFd(m_sockfd, saveErrno);
       if (bytes_read == -1) {
         if (errno == EAGAIN || errno == EWOULDBLOCK)
           break;
@@ -275,6 +266,7 @@ http_conn::HTTP_CODE http_conn::process_read() // 主状态机逻辑
       ret = parse_request_line(text);
       if (ret == BAD_REQUEST) {
         return BAD_REQUEST;
+        break;
       }
     }
     case CHECK_STATE_HEADER: {
@@ -409,7 +401,7 @@ void http_conn::unmap() {
     m_file_address = 0;
   }
 }
-bool http_conn::write() {
+bool http_conn::write(int *saveErrno) {
   int tem = 0;
   if (bytes_to_send == 0) {
     modfd(m_epollfd, m_sockfd, EPOLLIN, m_TRIGMode);
@@ -417,9 +409,9 @@ bool http_conn::write() {
     return true;
   }
   while (1) {
-    tem = writev(m_sockfd, m_iv, m_iv_count);
+    tem = m_write_buf.TransFd(m_sockfd, saveErrno);
     if (tem < 0) {
-      if (errno == EAGAIN) {
+      if (*saveErrno == EAGAIN) {
         modfd(m_epollfd, m_sockfd, EPOLLOUT, m_TRIGMode);
         return true;
       }
@@ -428,15 +420,6 @@ bool http_conn::write() {
     }
     bytes_have_send += tem;
     bytes_to_send -= tem;
-    // 每次循环需要调整iv结构体
-    if (bytes_have_send >= m_iv[0].iov_len) {
-      m_iv[0].iov_len = 0;
-      m_iv[1].iov_base = m_file_address + (bytes_have_send - m_write_idx);
-      m_iv[1].iov_len = bytes_to_send;
-    } else {
-      m_iv[0].iov_base = m_write_buf + bytes_have_send;
-      m_iv[0].iov_len = m_iv[0].iov_len - bytes_have_send;
-    }
     if (bytes_to_send <= 0) { // 发完了
       unmap();
       modfd(m_epollfd, m_sockfd, EPOLLIN, m_TRIGMode);
@@ -449,89 +432,68 @@ bool http_conn::write() {
     }
   }
 }
-bool http_conn::add_response(const char *format, ...) {
-  if (m_write_idx >= WRITE_BUFFER_SIZE)
-    return false;
-  va_list arg_list;
-  va_start(arg_list, format);
-  int len = vsnprintf(m_write_buf + m_write_idx,
-                      WRITE_BUFFER_SIZE - m_write_idx - 1, format, arg_list);
-  if (len >= (WRITE_BUFFER_SIZE - m_write_idx - 1)) {
-    va_end(arg_list);
-    return false;
-  }
-  m_write_idx += len;
-  va_end(arg_list);
-  return true;
+void http_conn::add_status_line(int status, const char *title) {
+  m_write_buf.Append("HTTP/1.1 " + to_string(status) + " " + title + "\r\n");
 }
-bool http_conn::add_status_line(int status, const char *title) {
-  return add_response("%s %d %s\r\n", "HTTP/1.1", status, title);
+void http_conn::add_content_type() {
+  m_write_buf.Append("Content-Type:" + string("text/html") + "\r\n");
 }
-bool http_conn::add_content_length(int content_len) {
-  return add_response("Content-Length:%d\r\n", content_len);
+void http_conn::add_headers(int content_len) {
+  m_write_buf.Append("Content-Length:" + to_string(content_len) + "\r\n");
+  m_write_buf.Append(("Connection:") +
+                     string((m_linger == true) ? "keep-alive" : "close") +
+                     "\r\n");
+  m_write_buf.Append("\r\n");
 }
-bool http_conn::add_content_type() {
-  return add_response("Content-Type:%s\r\n", "text/html");
-}
-bool http_conn::add_linger() {
-  return add_response("Connection:%s\r\n",
-                      (m_linger == true) ? "keep-alive" : "close");
-}
-bool http_conn::add_blank_line() { return add_response("%s", "\r\n"); }
-bool http_conn::add_headers(int content_len) {
-  return add_content_length(content_len) && add_linger() && add_blank_line();
-}
-bool http_conn::add_content(const char *content) {
-  return add_response("%s", content);
+void http_conn::add_content(const char *content) {
+  m_write_buf.Append(content);
 }
 bool http_conn::process_write(HTTP_CODE ret) {
   switch (ret) {
   case INTERNAL_ERROR: {
     add_status_line(500, error_500_title);
     add_headers(strlen(error_500_form));
-    if (!add_content(
-            error_500_form)) // 最后的添加的内容体可能导致越界，所以进行判断
-      return false;
+    add_content(error_500_form);
     break;
   }
   case BAD_REQUEST: {
     add_status_line(404, error_404_title);
     add_headers(strlen(error_404_form));
-    if (!add_content(error_404_form))
-      return false;
+    add_content(error_404_form);
     break;
   }
   case FORBIDDEN_REQUEST: {
     add_status_line(403, error_403_title);
     add_headers(strlen(error_403_form));
-    if (!add_content(error_403_form))
-      return false;
+    add_content(error_403_form);
+
     break;
   }
   case FILE_REQUEST: {
     add_status_line(200, ok_200_title);
     if (m_file_stat.st_size != 0) {
       add_headers(m_file_stat.st_size);
-      m_iv[0].iov_base = m_write_buf;
-      m_iv[0].iov_len = m_write_idx;
-      m_iv[1].iov_base = m_file_address;
-      m_iv[1].iov_len = m_file_stat.st_size;
-      m_iv_count = 2;
-      bytes_to_send = m_write_idx + m_file_stat.st_size;
+
+      m_write_buf.iov_[0].iov_base = m_write_buf.BeginPtr();
+      m_write_buf.iov_[0].iov_len = m_write_buf.ReadableBytes();
+      m_write_buf.iov_[1].iov_base = m_file_address;
+      m_write_buf.iov_[1].iov_len = m_file_stat.st_size;
+      m_write_buf.iovCnt_ = 2;
+      bytes_to_send = m_write_buf.iov_[0].iov_len + m_file_stat.st_size;
       return true;
     } else {
       const char *ok_string = "<html><body></body></html>";
       add_headers(strlen(ok_string));
-      if (!add_content(ok_string))
-        return false;
+      add_content(ok_string);
+      return false;
     }
   }
   default:
     return false;
   }
-  m_iv[0].iov_base = m_write_buf;
-  m_iv[0].iov_len = m_write_idx;
-  m_iv_count = 1;
+  m_write_buf.iov_[0].iov_base = m_write_buf.BeginPtr();
+  m_write_buf.iov_[0].iov_len = m_write_buf.ReadableBytes();
+  m_write_buf.iovCnt_ = 1;
   bytes_to_send = m_write_idx;
   return true;
 }

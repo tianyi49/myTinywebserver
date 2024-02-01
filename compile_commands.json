@@ -4,7 +4,7 @@
       "/usr/bin/g++",
       "-c",
       "-std=c++14",
-      "-O2",
+      "-g",
       "-o",
       "server",
       "main.cpp"
@@ -18,7 +18,7 @@
       "/usr/bin/g++",
       "-c",
       "-std=c++14",
-      "-O2",
+      "-g",
       "-o",
       "server",
       "timer/heap_timer.cpp"
@@ -32,7 +32,7 @@
       "/usr/bin/g++",
       "-c",
       "-std=c++14",
-      "-O2",
+      "-g",
       "-o",
       "server",
       "http/http_conn.cpp"
@@ -46,7 +46,21 @@
       "/usr/bin/g++",
       "-c",
       "-std=c++14",
-      "-O2",
+      "-g",
+      "-o",
+      "server",
+      "buffer/buffer.cpp"
+    ],
+    "directory": "/home/yy/code_project/myTinyWebServer",
+    "file": "/home/yy/code_project/myTinyWebServer/buffer/buffer.cpp",
+    "output": "/home/yy/code_project/myTinyWebServer/server"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++14",
+      "-g",
       "-o",
       "server",
       "log/log.cpp"
@@ -60,7 +74,7 @@
       "/usr/bin/g++",
       "-c",
       "-std=c++14",
-      "-O2",
+      "-g",
       "-o",
       "server",
       "CGImysql/sql_connection_pool.cpp"
@@ -74,7 +88,7 @@
       "/usr/bin/g++",
       "-c",
       "-std=c++14",
-      "-O2",
+      "-g",
       "-o",
       "server",
       "webserver/webserver.cpp"
@@ -88,7 +102,7 @@
       "/usr/bin/g++",
       "-c",
       "-std=c++14",
-      "-O2",
+      "-g",
       "-o",
       "server",
       "config.cpp"

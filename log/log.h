@@ -14,7 +14,7 @@
 #include <queue>
 #include <thread>
 
-#define BUFSIZE 1 * 1024 * 1024     // 2MB
+#define BUFSIZE 2 * 1024 * 1024     // 2MB
 #define LOGLINESIZE 4096            // 4KB
 #define MEM_LIMIT 512 * 1024 * 1024 // 512MB
 
