@@ -1,0 +1,50 @@
+[
+{
+  "directory": "/home/yy/code_project/myTinyWebServer/build",
+  "command": "/usr/bin/c++    -g -std=gnu++14 -o CMakeFiles/server.dir/main.cpp.o -c /home/yy/code_project/myTinyWebServer/main.cpp",
+  "file": "/home/yy/code_project/myTinyWebServer/main.cpp",
+  "output": "CMakeFiles/server.dir/main.cpp.o"
+},
+{
+  "directory": "/home/yy/code_project/myTinyWebServer/build",
+  "command": "/usr/bin/c++    -g -std=gnu++14 -o CMakeFiles/server.dir/timer/heap_timer.cpp.o -c /home/yy/code_project/myTinyWebServer/timer/heap_timer.cpp",
+  "file": "/home/yy/code_project/myTinyWebServer/timer/heap_timer.cpp",
+  "output": "CMakeFiles/server.dir/timer/heap_timer.cpp.o"
+},
+{
+  "directory": "/home/yy/code_project/myTinyWebServer/build",
+  "command": "/usr/bin/c++    -g -std=gnu++14 -o CMakeFiles/server.dir/http/http_conn.cpp.o -c /home/yy/code_project/myTinyWebServer/http/http_conn.cpp",
+  "file": "/home/yy/code_project/myTinyWebServer/http/http_conn.cpp",
+  "output": "CMakeFiles/server.dir/http/http_conn.cpp.o"
+},
+{
+  "directory": "/home/yy/code_project/myTinyWebServer/build",
+  "command": "/usr/bin/c++    -g -std=gnu++14 -o CMakeFiles/server.dir/buffer/buffer.cpp.o -c /home/yy/code_project/myTinyWebServer/buffer/buffer.cpp",
+  "file": "/home/yy/code_project/myTinyWebServer/buffer/buffer.cpp",
+  "output": "CMakeFiles/server.dir/buffer/buffer.cpp.o"
+},
+{
+  "directory": "/home/yy/code_project/myTinyWebServer/build",
+  "command": "/usr/bin/c++    -g -std=gnu++14 -o CMakeFiles/server.dir/log/log.cpp.o -c /home/yy/code_project/myTinyWebServer/log/log.cpp",
+  "file": "/home/yy/code_project/myTinyWebServer/log/log.cpp",
+  "output": "CMakeFiles/server.dir/log/log.cpp.o"
+},
+{
+  "directory": "/home/yy/code_project/myTinyWebServer/build",
+  "command": "/usr/bin/c++    -g -std=gnu++14 -o CMakeFiles/server.dir/CGImysql/sql_connection_pool.cpp.o -c /home/yy/code_project/myTinyWebServer/CGImysql/sql_connection_pool.cpp",
+  "file": "/home/yy/code_project/myTinyWebServer/CGImysql/sql_connection_pool.cpp",
+  "output": "CMakeFiles/server.dir/CGImysql/sql_connection_pool.cpp.o"
+},
+{
+  "directory": "/home/yy/code_project/myTinyWebServer/build",
+  "command": "/usr/bin/c++    -g -std=gnu++14 -o CMakeFiles/server.dir/webserver/webserver.cpp.o -c /home/yy/code_project/myTinyWebServer/webserver/webserver.cpp",
+  "file": "/home/yy/code_project/myTinyWebServer/webserver/webserver.cpp",
+  "output": "CMakeFiles/server.dir/webserver/webserver.cpp.o"
+},
+{
+  "directory": "/home/yy/code_project/myTinyWebServer/build",
+  "command": "/usr/bin/c++    -g -std=gnu++14 -o CMakeFiles/server.dir/config.cpp.o -c /home/yy/code_project/myTinyWebServer/config.cpp",
+  "file": "/home/yy/code_project/myTinyWebServer/config.cpp",
+  "output": "CMakeFiles/server.dir/config.cpp.o"
+}
+]
