@@ -21,6 +21,6 @@ set(SOURCE_FILES
         ./CGImysql/sql_connection_pool.cpp
         ./webserver/webserver.cpp
         config.cpp)
-
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR})
 add_executable(server ${SOURCE_FILES})
 target_link_libraries(server pthread mysqlclient)

@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "/home/yy/code_project/myTinyWebServer/server"
+  "/home/yy/code_project/myTinyWebServer/server.pdb"
   "CMakeFiles/server.dir/CGImysql/sql_connection_pool.cpp.o"
   "CMakeFiles/server.dir/CGImysql/sql_connection_pool.cpp.o.d"
   "CMakeFiles/server.dir/buffer/buffer.cpp.o"
@@ -15,8 +17,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/timer/heap_timer.cpp.o.d"
   "CMakeFiles/server.dir/webserver/webserver.cpp.o"
   "CMakeFiles/server.dir/webserver/webserver.cpp.o.d"
-  "server"
-  "server.pdb"
 )
 
 # Per-language clean rules from dependency scanning.
