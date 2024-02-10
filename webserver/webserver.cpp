@@ -218,7 +218,7 @@ void WebServer::trig_mode() {
 void WebServer::log_write() {
 
   if (0 == m_close_log) {
-    Logger::GetInstance()->Init("./log_record", LoggerLevel::INFO, m_close_log,
+    Logger::GetInstance()->Init("./log_record", LoggerLevel::ERROR, m_close_log,
                                 800000);
   }
 }
@@ -317,7 +317,6 @@ void WebServer::eventLoop() {
     {
       utils.timer_handler(); // 定时器检测连接过期情况，重新发送定时信号
       LOG(LoggerLevel::INFO, "%s", "timer tick");
-
       timeout = false;
     }
   }

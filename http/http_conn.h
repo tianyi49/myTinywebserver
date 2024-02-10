@@ -44,9 +44,9 @@ public:
     NO_REQUEST,  // 请求不完整，需要继续读取请求报文数据
     GET_REQUEST, //- GET_REQUEST获得了完整的HTTP请求
     BAD_REQUEST, //- HTTP请求报文有语法错误
-    NO_RESOURCE,
-    FORBIDDEN_REQUEST,
-    FILE_REQUEST,
+    NO_RESOURCE,//没有请求文件
+    FORBIDDEN_REQUEST,//其它用户没有权限获取文件
+    FILE_REQUEST,//正常文件请求
     INTERNAL_ERROR, // 服务器内部错误，该结果在主状态机逻辑switch的default下，一般不会触发
     CLOSED_CONNECTION
   };

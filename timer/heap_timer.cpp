@@ -111,7 +111,7 @@ void Utils::addsig(int sig, void(handler)(int), bool restart) {
   memset(&sa, '\0', sizeof(sa));
   sa.sa_handler = handler;
   if (restart)
-    sa.sa_flags |= SA_RESTART;
+    sa.sa_flags |= SA_RESTART;//重启中断处的代码
   sigfillset(&sa.sa_mask);
   assert(sigaction(sig, &sa, NULL) != -1);
 }

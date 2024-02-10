@@ -1,6 +1,5 @@
 #include "http_conn.h"
 #include <cerrno>
-#include <cstdarg>
 #include <cstdio>
 #include <cstring>
 #include <mysql/mysql.h>
@@ -38,9 +37,9 @@ void http_conn::initmysql_result(connection_pool *connPool) {
   // 从表中检索完整的结果集
   MYSQL_RES *result = mysql_store_result(mysql);
 
-  // 返回结果集中的列数
+  // 返回结果集中的列数，没用到
   int num_fields = mysql_num_fields(result);
-  // 返回所有字段结构的数组
+  // 返回所有字段结构的数组，没用到
   MYSQL_FIELD *fields = mysql_fetch_fields(result);
   while (MYSQL_ROW row = mysql_fetch_row(result)) {
     m_users[row[0]] = row[1];

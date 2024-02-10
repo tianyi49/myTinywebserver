@@ -1,7 +1,6 @@
 #ifndef HEAP_TIMER
 #define HEAP_TIMER
 #include <arpa/inet.h>
-#include <assert.h>
 #include <fcntl.h>
 #include <netinet/in.h>
 #include <pthread.h>

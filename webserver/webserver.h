@@ -3,13 +3,8 @@
 #include "../http/http_conn.h"
 #include "../threadpool/threadpool.h"
 #include <arpa/inet.h>
-#include <errno.h>
 #include <fcntl.h>
 #include <netinet/in.h>
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <string>
 #include <sys/epoll.h>
 #include <sys/socket.h>

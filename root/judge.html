@@ -1,26 +1,52 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>WebServer</title>
-    </head>
-    <body>
-    <br/>
-    <br/>
-    <div align="center"><font size="5"> <strong>欢迎访问</strong></font></div>
-	<br/>
-		<br/>
-		<form action="0" method="post">
- 			<div align="center"><button type="submit">新用户</button></div>
-                </form>
-		<br/>
-                <form action="1" method="post">
-                        <div align="center"><button type="submit" >已有账号</button></div>
-                </form>
-		
-		
-        </div>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to WebServer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: 50px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to WebServer</h1>
+        <form action="register.html" method="post">
+            <button type="submit">新用户注册</button>
+        </form>
+        <br>
+        <form action="login.html" method="post">
+            <button type="submit">已有账号登录</button>
+        </form>
+    </div>
+</body>
 </html>
-
-
