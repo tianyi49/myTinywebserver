@@ -13,7 +13,7 @@
 using namespace std;
 const int MAX_FD = 65535; // 预先分配http连接数组，大概200m
 const int MAX_EVENT_NUMBER = 10000;
-const int TIMESLOT = 1000; // 最小超时单位
+const int TIMESLOT = 3; // 最小超时单位
 
 int setnonblocking(int fd); // 对文件描述符设置非阻塞
 void addfd(

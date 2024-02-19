@@ -297,11 +297,10 @@ http_conn::HTTP_CODE http_conn::do_request() {
   // 处理cgi
   if (cgi == 1 && ((*(p + 1) == '2' || *(p + 1) == '3'))) {
     char flag = m_url[1];
-
     char *m_url_real = (char *)malloc(sizeof(char) * 200);
     strcpy(m_url_real, "/");
     strcat(m_url_real, m_url + 2);
-    strncpy(m_real_file + len, m_url_real, FILENAME_LEN - len - 1);
+    strncpy(m_real_file + len, m_url_real, strlen(m_url_real)+1<FILENAME_LEN - len - 1?strlen(m_url_real)+1:FILENAME_LEN - len - 1);
     free(m_url_real);
 
     // 将用户名和密码提取出来
@@ -351,32 +350,32 @@ http_conn::HTTP_CODE http_conn::do_request() {
   if (*(p + 1) == '0') {
     char *m_url_real = (char *)malloc(sizeof(char) * 200);
     strcpy(m_url_real, "/register.html");
-    strncpy(m_real_file + len, m_url_real, strlen(m_url_real));
-
+    strncpy(m_real_file + len, m_url_real, strlen(m_url_real)+1<FILENAME_LEN - len - 1?strlen(m_url_real)+1:FILENAME_LEN - len - 1);
+     
     free(m_url_real);
   } else if (*(p + 1) == '1') {
     char *m_url_real = (char *)malloc(sizeof(char) * 200);
     strcpy(m_url_real, "/log.html");
-    strncpy(m_real_file + len, m_url_real, strlen(m_url_real));
-
+    strncpy(m_real_file + len, m_url_real,  strlen(m_url_real)+1<FILENAME_LEN - len - 1?strlen(m_url_real)+1:FILENAME_LEN - len - 1);
+     
     free(m_url_real);
   } else if (*(p + 1) == '5') {
     char *m_url_real = (char *)malloc(sizeof(char) * 200);
     strcpy(m_url_real, "/picture.html");
-    strncpy(m_real_file + len, m_url_real, strlen(m_url_real));
-
+    strncpy(m_real_file + len, m_url_real,  strlen(m_url_real)+1<FILENAME_LEN - len - 1?strlen(m_url_real)+1:FILENAME_LEN - len - 1);
+     
     free(m_url_real);
   } else if (*(p + 1) == '6') {
     char *m_url_real = (char *)malloc(sizeof(char) * 200);
     strcpy(m_url_real, "/video.html");
-    strncpy(m_real_file + len, m_url_real, strlen(m_url_real));
-
+    strncpy(m_real_file + len, m_url_real,  strlen(m_url_real)+1<FILENAME_LEN - len - 1?strlen(m_url_real)+1:FILENAME_LEN - len - 1);
+ 
     free(m_url_real);
   } else if (*(p + 1) == '7') {
     char *m_url_real = (char *)malloc(sizeof(char) * 200);
     strcpy(m_url_real, "/fans.html");
-    strncpy(m_real_file + len, m_url_real, strlen(m_url_real));
-
+    strncpy(m_real_file + len, m_url_real,  strlen(m_url_real)+1<FILENAME_LEN - len - 1?strlen(m_url_real)+1:FILENAME_LEN - len - 1);
+ 
     free(m_url_real);
   } else
     strncpy(m_real_file + len, m_url, FILENAME_LEN - len - 1);
@@ -506,5 +505,5 @@ void http_conn::process() {
   if (!write_ret) {
     close_conn();
   }
-  modfd(m_epollfd, m_sockfd, EPOLLOUT, m_TRIGMode); // 等待写就绪
+  modfd(m_epollfd, m_sockfd, EPOLLOUT|EPOLLIN, m_TRIGMode); // 等待写就绪
 }

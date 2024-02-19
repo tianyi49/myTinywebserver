@@ -218,7 +218,7 @@ void WebServer::trig_mode() {
 void WebServer::log_write() {
 
   if (0 == m_close_log) {
-    Logger::GetInstance()->Init("./log_record", LoggerLevel::ERROR, m_close_log,
+    Logger::GetInstance()->Init("./log_record", LoggerLevel::INFO, m_close_log,
                                 800000);
   }
 }

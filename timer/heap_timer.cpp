@@ -26,7 +26,7 @@ void heap_timer::add_timer(shared_ptr<util_timer> timer) {
   if (m_size < initHeapSize)
     m_heapVec[m_size] = timer;
   else
-    m_heapVec.push_back(timer); // 放到末尾
+    m_heapVec.emplace_back(timer); // 放到末尾
   m_size++;
   auto tem = timer;
   for (; hole > 0; hole = parent) {
