@@ -2,6 +2,7 @@
 #include "log.h"
 #include <chrono>
 #include <cstdlib>
+#include <shared_mutex>
 const char *LevelString[5] = {"DEBUG", "INFO", "WARNING", "ERROR", "FATAL"};
 // LogBuffer
 
@@ -196,7 +197,7 @@ void Logger::Append(int level, const char *file, int line, const char *func,
   std::map<std::thread::id, LogBuffer *>::iterator iter;
   {
     // TO DO：待优化，应该可以改为读写锁
-    std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::shared_mutex> lock(wrMtx);
     iter = threadbufmap.find(tid);
     if (iter != threadbufmap.end()) {
       currentlogbuffer = iter->second;
@@ -278,7 +279,7 @@ void Logger::Flush() {
       while (flushbufqueue.empty() && start) { // 多个消费者使用while
         if (flushcond.wait_for(lock, std::chrono::seconds(10)) ==
             std::cv_status::timeout) {
-          std::lock_guard<std::mutex> lock1(mtx);
+          std::lock_guard<std::shared_mutex> lock1(wrMtx);
           auto itr = threadbufmap.begin();
           for (; itr != threadbufmap.end(); itr++) {
             if (itr->second->GetState() == LogBuffer::BufState::FREE &&

@@ -2,6 +2,7 @@
 #include <arpa/inet.h>
 #include <cerrno>
 #include <cstddef>
+#include <cstring>
 #include <ctime>
 #include <memory>
 #include <unistd.h>

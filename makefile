@@ -1,6 +1,6 @@
 CXX ?= g++
 DEBUG ?= 1
-CXXFLAGS=-std=c++14
+CXXFLAGS=-std=c++17
 ifeq ($(DEBUG), 1)
     CXXFLAGS += -g
 else

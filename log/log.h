@@ -1,6 +1,7 @@
 #ifndef LOG_H
 #define LOG_H
 
+#include <shared_mutex>
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
@@ -70,6 +71,8 @@ private:
   // 当前使用的缓冲区
   // LogBuffer *currentlogbuffer;
   // std::unordered_map<std::thread::id, LogBuffer *> threadbufmap;
+  //读写锁
+  std::shared_mutex wrMtx;
   std::map<std::thread::id, LogBuffer *> threadbufmap;
   // mutex
   std::mutex mtx;

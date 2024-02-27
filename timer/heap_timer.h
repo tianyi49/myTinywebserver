@@ -42,7 +42,7 @@ private:
   unordered_map<shared_ptr<util_timer>, int> timer2index;
 
 public:
-  heap_timer() : m_heapVec(initHeapSize) {} // 提前分配vec大小，避免动态扩容开销
+  heap_timer() { m_heapVec.reserve(5000); } // 提前分配vec大小，避免动态扩容开销
   ~heap_timer() = default;
   heap_timer(const heap_timer &) = default;
   heap_timer &operator=(const heap_timer &) = delete;

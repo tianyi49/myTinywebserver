@@ -23,10 +23,7 @@ void heap_timer::add_timer(shared_ptr<util_timer> timer) {
     return;
   int hole = m_size;
   int parent = 0;
-  if (m_size < initHeapSize)
-    m_heapVec[m_size] = timer;
-  else
-    m_heapVec.emplace_back(timer); // 放到末尾
+  m_heapVec.emplace_back(timer); // 放到末尾
   m_size++;
   auto tem = timer;
   for (; hole > 0; hole = parent) {
@@ -49,10 +46,7 @@ void heap_timer::pop_timer() {
   if (m_heapVec[0]) {
     timer2index.erase(m_heapVec[0]);
     m_heapVec[0] = m_heapVec[--m_size];
-    if (m_heapVec.size() > initHeapSize)
-      m_heapVec.pop_back();
-    else
-      m_heapVec[m_size] = nullptr;
+    m_heapVec.pop_back();
     percolate_down(0);
   }
 }
@@ -62,10 +56,7 @@ void heap_timer::pop_timer(int index) {
   if (m_heapVec[index]) {
     timer2index.erase(m_heapVec[index]);
     m_heapVec[index] = m_heapVec[--m_size];
-    if (m_heapVec.size() > initHeapSize)
-      m_heapVec.pop_back();
-    else
-      m_heapVec[m_size] = nullptr;
+    m_heapVec.pop_back();
     percolate_down(index);
   }
 }
@@ -111,7 +102,7 @@ void Utils::addsig(int sig, void(handler)(int), bool restart) {
   memset(&sa, '\0', sizeof(sa));
   sa.sa_handler = handler;
   if (restart)
-    sa.sa_flags |= SA_RESTART;//重启中断处的代码
+    sa.sa_flags |= SA_RESTART; // 重启中断处的代码
   sigfillset(&sa.sa_mask);
   assert(sigaction(sig, &sa, NULL) != -1);
 }
