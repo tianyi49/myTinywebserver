@@ -195,18 +195,20 @@ void Logger::Append(int level, const char *file, int line, const char *func,
   LogBuffer *currentlogbuffer = nullptr;
   // std::unordered_map<std::thread::id, LogBuffer *>::iterator iter;
   std::map<std::thread::id, LogBuffer *>::iterator iter;
-  {
     // TO DO：待优化，应该可以改为读写锁
-    std::lock_guard<std::shared_mutex> lock(wrMtx);
+    wrMtx.lock_shared();
     iter = threadbufmap.find(tid);
     if (iter != threadbufmap.end()) {
       currentlogbuffer = iter->second;
+      wrMtx.unlock_shared();
     } else {
+      wrMtx.unlock_shared();
+      wrMtx.lock();
       threadbufmap[tid] = currentlogbuffer = new LogBuffer(BUFSIZE);
       buftotalnum++;
       std::cout << "------create new LogBuffer:" << buftotalnum << std::endl;
+      wrMtx.unlock();
     }
-  }
 
   // 空间足够
   if (currentlogbuffer->GetAvailLen() >= len &&
@@ -233,11 +235,11 @@ void Logger::Append(int level, const char *file, int line, const char *func,
       }
       // new buf
       else {
+        std::lock_guard<std::mutex> lock1(mtx);
         // 日志缓冲占用的内存没有到达上限
         if (buftotalnum * BUFSIZE < MEM_LIMIT) {
           currentlogbuffer = new LogBuffer(BUFSIZE);
           {
-            std::lock_guard<std::mutex> lock1(mtx);
             buftotalnum++;
           }
           std::cout << "create new LogBuffer:" << buftotalnum << std::endl;

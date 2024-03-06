@@ -192,6 +192,7 @@ void Logger::Append(int level, const char *file, int line, const char *func,
     if (iter != threadbufmap.end()) {
       currentlogbuffer = iter->second;
     } else {
+      
       threadbufmap[tid] = currentlogbuffer = new LogBuffer(BUFSIZE);
       buftotalnum++;
       std::cout << "------create new LogBuffer:" << buftotalnum << std::endl;
