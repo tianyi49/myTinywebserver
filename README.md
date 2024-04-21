@@ -1,6 +1,6 @@
 # 项目描述
 基于c++14实现的轻量linux服务器，访问服务器数据库实现web端用户注册、登录功能，可以请求服务器图片和视频文件，
-在云服务器上部署，2w+并发QPS（github地址：https://github.com/tianyi49/myTinywebserver）
+在云服务器上部署，1w+并发QPS（github地址：https://github.com/tianyi49/myTinywebserver）
 # 主要工作
 * 利用epoll（ET或LT）实现reactor或模拟proactor模式的多线程并发模型
 * 使用模版方法模式实现的基于vector封装char的自动增长的读写缓冲区
